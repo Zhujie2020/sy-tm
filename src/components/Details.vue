@@ -16,14 +16,31 @@
     </div>
     <div class="info">
       <div class="money">￥2344-8580.5</div>
-      <div>sajdisacjksd cijwdficbsd kjcbisdubcfiljsd bcjisdbcijwsbdljsdgcfijsdbcf;idgcf</div>  
+      <div>sajdisacjksd cijwdficbsd kjcbisdubcfiljsd bcjisdbcijwsbdljsdgcfijsdbcf;idgcf</div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
-  
+  created() {
+    let url = "http://127.0.0.1:5500/src/data/detail.json";
+    // 为给定 ID 的 user 创建请求
+    axios
+      .get(url)
+      .then(function(response) {
+        console.log(response);
+      })
+
+
+
+
+      
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
 };
 </script>
 
@@ -53,7 +70,7 @@ export default {
   height: 8%;
   display: none;
 }
-.detail-title-list{
+.detail-title-list {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,10 +81,10 @@ export default {
   margin: 0 20px;
   padding: 10px 0;
 }
-.detail-list{
-  background: rgba(144,145,145,.5);
+.detail-list {
+  background: rgba(144, 145, 145, 0.5);
   border-radius: 50%;
-  width:30px;
+  width: 30px;
   height: 30px;
   display: flex;
   align-items: center;
@@ -77,7 +94,6 @@ export default {
 .detail-title-list img {
   width: 20px;
   height: 20px;
-  
 }
 .active {
   border-bottom: 2px solid rgb(255, 43, 88);
