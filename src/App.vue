@@ -1,17 +1,23 @@
 <template>
-    <div id="app">
-          <router-view></router-view>
-    </div>
+<div id="app">
+    <router-view></router-view>
+</div>
 </template>
 
 <style>
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-#app,body,html{
-  height: 100%;
+
+#app,
+body,
+html {
+    height: 100%;
 }
- 
+
+.swiper-pagination-bullet {
+    background-color: black !important;
+}
 </style>
