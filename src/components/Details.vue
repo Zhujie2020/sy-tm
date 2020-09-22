@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="list[id]">
     <!-- 图片和上面的标题  -->
     <div class="title">
       <div class="title-top">
@@ -52,7 +52,7 @@
     </div>
     <!--介绍-->
     <div class="info">
-      <div class="info-pro">
+      <div class="info-pro" v-if="list[id]">
         <div class="info-item">{{list[id].info}}</div>
       </div>
       <div class="information">
@@ -133,7 +133,7 @@
           <div class="touxiang"><img src="//wwc.alicdn.com/avatar/getAvatar.do?userIdStr=vGNuOHcWv88YXF-HPmvbMGx4PG8bXF--OHlHOFkSvmNSMFNuMG7eMG*eMmlIXmHS&width=40&height=40&type=sns" alt=""></div>
           <div class="name">君**3</div>
         </div>
-        <div class="commen-self">{{list[id].comment-one}}</div>
+        <!-- <div class="commen-self">{{list[id][comment-one]}}</div> -->
         <div class="content">2020-09-18 颜色分类：A83149638 紫红 女；鞋码：38</div>
       </div>
       <div class="comment-ask">
