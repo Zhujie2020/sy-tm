@@ -14,18 +14,14 @@
                 "https://img.alicdn.com/imgextra/i2/379092709/O1CN01tgJ6Iu1VslWGoR7Nm_!!379092709.jpg_2200x2200Q100s50.jpg_.webp"
             ],
             "noprice":288,
-            "touxiang":"//wwc.alicdn.com/avatar/getAvatar.do?userIdStr=vGNuOHcWv88YXF-HPmvbMGx4PG8bXF--OHlHOFkSvmNSMFNuMG7eMG*eMmlIXmHS&width=40&height=40&type=sns",
             "price":148,
-            "comment-one":"太合适了吧！淘宝以来最满意的一次购物，物流快，客服推荐的号码正好，果断收藏店铺，我不是托",
-            "comment-two":"宝贝收到了，是我喜欢的样子，打开包装没有味道，也没有线头，很愉快的一次购物",
-            
+            "comments":["太合适了吧！淘宝以来最满意的一次购物，物流快，客服推荐的号码正好，果断收藏店铺，我不是托","宝贝收到了，是我喜欢的样子，打开包装没有味道，也没有线头，很愉快的一次购物"],
             "name":["君**3","hang"]
             
         },
         {
             
             "id":1,
-            "touxiang":"//wwc.alicdn.com/avatar/getAvatar.do?userIdStr=vGNuOHcWv88YXF-HPmvbMGx4PG8bXF--OHlHOFkSvmNSMFNuMG7eMG*eMmlIXmHS&width=40&height=40&type=sns",
             "img":"https://img.alicdn.com/imgextra/i4/379092709/O1CN01nrnQCK1VslZ7bEA62_!!379092709.jpg_2200x2200Q100s50.jpg_.webp",
             "info":"骆驼户外登山鞋女冬季保暖防滑减震鞋耐磨低帮运动徒步鞋户外鞋",
             "swiper":[
@@ -37,20 +33,17 @@
             ],
             "price":128.00,
             "noprice":288,
-            "comment-one":"质量好是正品",
-            "comment-two":"鞋子跟预期的一样",
+            "comments":["质量好是正品","鞋子跟预期的一样"],
             "name":["吻泪","我离开你解脱"]
 
         },
         {
             "id":2,
-            "touxiang":"//wwc.alicdn.com/avatar/getAvatar.do?userIdStr=vGNuOHcWv88YXF-HPmvbMGx4PG8bXF--OHlHOFkSvmNSMFNuMG7eMG*eMmlIXmHS&width=40&height=40&type=sns",
             "img":"https://img.alicdn.com/imgextra/i4/2432164468/O1CN015ylwuL1isOF9DyS8y_!!2432164468.jpg_2200x2200Q100s50.jpg_.webp",
             "info":"胡桃木沙发新中式贵妃农村全实木沙发组合客厅木头经济型家具套装",
             "price":3956.5,
             "noprice":288,
-            "comment-one":"还不错，性价比很高",
-            "comment-two":"此用户没有填写评论！",
+            "comments":["还不错，性价比很高","此用户没有填写评论！"],
             "swiper":[
                 "https://img.alicdn.com/imgextra/i4/379092709/O1CN01nrnQCK1VslZ7bEA62_!!379092709.jpg_2200x2200Q100s50.jpg_.webp",
                 "https://img.alicdn.com/imgextra/i1/379092709/O1CN01sMg1f21VslXikT1fn_!!379092709-0-lubanu-s.jpg_2200x2200Q100s50.jpg_.webp",
@@ -62,13 +55,11 @@
         },
         {
             "id":3,
-            "touxiang":"//wwc.alicdn.com/avatar/getAvatar.do?userIdStr=vGNuOHcWv88YXF-HPmvbMGx4PG8bXF--OHlHOFkSvmNSMFNuMG7eMG*eMmlIXmHS&width=40&height=40&type=sns",
             "img":"https://img.alicdn.com/imgextra/i1/1063095847/O1CN01dkQrpP1t3yPguHTd9_!!1063095847-0-lubanu-s.jpg_2200x2200Q100s50.jpg_.webp",
             "info":"折叠床办公室单人午睡休床家用便携简易双人沙发床出租屋行军床",
             "price":249,
             "noprice":288,
-            "comment-one":"挺好的，性价比高，之前买的睡床不是短就是窄，而且一翻身就各种响，实在是太影响其他人了。这个特别舒服",
-            "comment-two":"可以挺好的一个床！",
+            "comments":["可以挺好的一个床！","挺好的，性价比高，之前买的睡床不是短就是窄，而且一翻身就各种响，实在是太影响其他人了。这个特别舒服"],
             "swiper":[
                 "https://img.alicdn.com/imgextra/i4/379092709/O1CN01nrnQCK1VslZ7bEA62_!!379092709.jpg_2200x2200Q100s50.jpg_.webp",
                 "https://img.alicdn.com/imgextra/i3/1063095847/O1CN01L8NvtO1t3yPcE2Xsm_!!1063095847-0-lubanu-s.jpg_2200x2200Q100s50.jpg_.webp",
@@ -80,13 +71,11 @@
         },
         {
             "id":4,
-            "touxiang":"//wwc.alicdn.com/avatar/getAvatar.do?userIdStr=vGNuOHcWv88YXF-HPmvbMGx4PG8bXF--OHlHOFkSvmNSMFNuMG7eMG*eMmlIXmHS&width=40&height=40&type=sns",
             "img":"https://img.alicdn.com/imgextra/i1/3424653238/O1CN01tcQb931Zn31ax5bTo_!!3424653238.jpg_2200x2200Q100s50.jpg_.webp",
             "info":"秋装2020年新款大码女装贵夫人打底连衣裙秋冬内搭配大衣的长裙子",
             "price":99,
             "noprice":288,
-            "comment-one":"质量很好，这么优惠的价格得到了美丽的心意，非常开心",
-            "comment-two":"这款式好看，非常满意！",
+            "comments":["这款式好看，非常满意！","质量很好，这么优惠的价格得到了美丽的心意，非常开心"],
             "swiper":[
                 "https://img.alicdn.com/imgextra/i1/3424653238/O1CN01tcQb931Zn31ax5bTo_!!3424653238.jpg_2200x2200Q100s50.jpg_.webp",
                 "https://img.alicdn.com/imgextra/i1/3424653238/O1CN01KAL1yb1Zn31k8laVU_!!3424653238.jpg_2200x2200Q100s50.jpg_.webp",
@@ -98,13 +87,11 @@
         },
         {
             "id":5,
-            "touxiang":"//wwc.alicdn.com/avatar/getAvatar.do?userIdStr=vGNuOHcWv88YXF-HPmvbMGx4PG8bXF--OHlHOFkSvmNSMFNuMG7eMG*eMmlIXmHS&width=40&height=40&type=sns",
             "img":"https://img.alicdn.com/imgextra/i2/444076877/O1CN015ejGVO20fiMuRGqR5-444076877.jpg_2200x2200Q100s50.jpg_.webp",
             "info":"阿卡2020年新韩版宽松潮流羽绒马甲女短款马夹背心休闲百搭外套",
             "price":229,
             "noprice":288,
-            "comment-one":"不好，跑毛",
-            "comment-two":"好看又保暖，喜欢！",
+            "comments":["好看又保暖，喜欢！","不好，跑毛"],
             "swiper":[
                 "https://img.alicdn.com/imgextra/i4/379092709/O1CN01nrnQCK1VslZ7bEA62_!!379092709.jpg_2200x2200Q100s50.jpg_.webp",
                 "https://img.alicdn.com/imgextra/i1/379092709/O1CN01sMg1f21VslXikT1fn_!!379092709-0-lubanu-s.jpg_2200x2200Q100s50.jpg_.webp",
@@ -116,13 +103,11 @@
         },
         {
             "id":6,
-            "touxiang":"//wwc.alicdn.com/avatar/getAvatar.do?userIdStr=vGNuOHcWv88YXF-HPmvbMGx4PG8bXF--OHlHOFkSvmNSMFNuMG7eMG*eMmlIXmHS&width=40&height=40&type=sns",
             "img":"https://img.alicdn.com/imgextra/i1/1751590872/TB15nYTKVXXXXb9XFXXXXXXXXXX_!!0-item_pic.jpg_2200x2200Q100s50.jpg_.webp",
             "info":"亚麻小西装女士短款2020秋季新款韩版七分袖棉麻休闲西服外套薄款",
             "price":99,
             "noprice":288,
-            "comment-one":"质量真不错，颜色超好看",
-            "comment-two":"尺码推荐：刚刚合身 厚薄度：合适 面料品质：棉麻的质量挺好 上身效果：显瘦",
+            "comments":["尺码推荐：刚刚合身 厚薄度：合适 面料品质：棉麻的质量挺好 上身效果：显瘦","质量真不错，颜色超好看"],
             "swiper":[
                 "https://img.alicdn.com/imgextra/i4/379092709/O1CN01nrnQCK1VslZ7bEA62_!!379092709.jpg_2200x2200Q100s50.jpg_.webp",
                 "https://img.alicdn.com/imgextra/i1/379092709/O1CN01sMg1f21VslXikT1fn_!!379092709-0-lubanu-s.jpg_2200x2200Q100s50.jpg_.webp",
@@ -134,13 +119,11 @@
         },
         {
             "id":7,
-            "touxiang":"//wwc.alicdn.com/avatar/getAvatar.do?userIdStr=vGNuOHcWv88YXF-HPmvbMGx4PG8bXF--OHlHOFkSvmNSMFNuMG7eMG*eMmlIXmHS&width=40&height=40&type=sns",
             "img":"https://img.alicdn.com/imgextra/i1/3070105612/O1CN01CnPmZP1rKLL1kJWux_!!3070105612-0-lubanu-s.jpg_2200x2200Q100s50.jpg_.webp",
             "info":"冬季黑色蟒纹迷彩服套装男特种兵加绒加厚军装作训战术服外套正品",
             "price":188,
             "noprice":288,
-            "comment-one":"非常满意，很喜欢",
-            "comment-two":"还不错 换了一个码",
+            "comments":["还不错 换了一个码","非常满意，很喜欢"],
             "swiper":[
                 "https://img.alicdn.com/imgextra/i4/379092709/O1CN01nrnQCK1VslZ7bEA62_!!379092709.jpg_2200x2200Q100s50.jpg_.webp",
                 "https://img.alicdn.com/imgextra/i4/3070105612/O1CN019n7rYd1rKLL5Ju4Om_!!3070105612-0-lubanu-s.jpg_2200x2200Q100s50.jpg_.webp",
@@ -153,13 +136,11 @@
 
         {
             "id":8,
-            "touxiang":"//wwc.alicdn.com/avatar/getAvatar.do?userIdStr=vGNuOHcWv88YXF-HPmvbMGx4PG8bXF--OHlHOFkSvmNSMFNuMG7eMG*eMmlIXmHS&width=40&height=40&type=sns",
             "img":"https://img.alicdn.com/imgextra/i2/783329018/O1CN017O6oEa2GUILUVGtMT_!!783329018.jpg_2200x2200Q100s50.jpg_.webp",
             "info":"Skechers斯凯奇魔术贴时尚高帮厚底户外休闲运动鞋马丁靴女 15537",
             "price":629,
             "noprice":288,
-            "comment-one":"合适，舒服",
-            "comment-two":"面料很舒服 鞋底轻软 喜欢",
+            "comment-one":["面料很舒服 鞋底轻软 喜欢","合适，舒服"],
             "swiper":[
                 "https://img.alicdn.com/imgextra/i4/379092709/O1CN01nrnQCK1VslZ7bEA62_!!379092709.jpg_2200x2200Q100s50.jpg_.webp",
                 "https://img.alicdn.com/imgextra/i3/783329018/O1CN017TVBHN2GUILSB2ZSX_!!783329018.jpg_2200x2200Q100s50.jpg_.webp",
@@ -171,13 +152,11 @@
         },
         {
             "id":9,
-            "touxiang":"//wwc.alicdn.com/avatar/getAvatar.do?userIdStr=vGNuOHcWv88YXF-HPmvbMGx4PG8bXF--OHlHOFkSvmNSMFNuMG7eMG*eMmlIXmHS&width=40&height=40&type=sns",
             "img":"https://img.alicdn.com/imgextra/i1/737001002/O1CNA12Qzgxz1JGxTkUlqZt_!!737001002-0-psf.jpg_2200x2200Q100s50.jpg_.webp",
             "info":"中老年人爷爷外穿棉裤男宽松休闲冬季加厚防风保暖加绒运动长裤子",
             "price":99,
             "noprice":288,
-            "comment-one":"东西还不错老爸很喜欢",
-            "comment-two":"老爸收到货很满意",
+            "comments":["老爸收到货很满意","东西还不错老爸很喜欢"],
             "swiper":[
                 "https://img.alicdn.com/imgextra/i4/379092709/O1CN01nrnQCK1VslZ7bEA62_!!379092709.jpg_2200x2200Q100s50.jpg_.webp",
                 "https://img.alicdn.com/imgextra/i1/737001002/O1CNA12Qzgxz1JGxTkUlqZt_!!737001002-0-psf.jpg_2200x2200Q100s50.jpg_.webp",
