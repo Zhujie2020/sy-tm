@@ -1,15 +1,16 @@
 <template>
   <div class="big">
-      <div class="title title-fix" v-if="see">
-        <div class="title-top-brand title-top">
-          <div class="pic" @click="$router.go(-1)">
-            <img src="../assets/左白.png" />
-          </div>
-          <div class="pic">
-            <img src="../assets/车白.png" />
-          </div>
+    <div class="title title-fix" v-if="see">
+      <div class="title-top-brand title-top">
+        <div class="pic" @click="$router.go(-1)">
+          <img src="../assets/左白.png" />
+        </div>
+        <div class="pic" @click="goCar">
+          <img src="../assets/车白.png" />
         </div>
       </div>
+    </div>
+    <div class="container" v-if="list[id]" @scroll="scrollEvent">
       <!-- else -->
       <div class="title title-fix bgshite" v-if="bgwhite">
         <div class="title-top-brand title-top">
@@ -17,18 +18,17 @@
             <img src="../assets/左灰.png" />
           </div>
           <div class="three">
-            <div class="active">商品</div>
-            <div>评价</div>
-            <div>详情</div>
+            <div :class="{active:this.scrolltop>0&&this.scrolltop<=this.firstTop}" @click="changetop(0)"  @scroll="scrollEvent">商品</div>
+            <div  :class="{active:this.scrolltop>this.firstTop&&this.scrolltop<=this.secondTop}" @click="changetop(firstTop)" @scroll="scrollEvent">评价</div>
+            <div  :class="{active:this.scrolltop>this.secondTop}" @click="changetop(scrollTop)" @scroll="scrollEvent">详情</div>
           </div>
           <div class="pic">
             <img src="../assets/车灰.png" />
           </div>
         </div>
       </div>
-    <div class="container" v-if="list[id]" @scroll="scrollEvent">
-      <!-- 图片和上面的标题  -->
-      <div class="title">
+      <!-- 轮播  -->
+      <div class="title title-pho">
         <div class="photo">
           <swiper v-if="list[id]" ref="mySwiper2" :options="swiperOptions" class="swiper-one">
             <swiper-slide class="swiper-two" v-for="item in list[id].swiper" :key="item.id">
@@ -159,14 +159,195 @@
           <div class="shop-comment">
             <div class="comment-left">问大家(143)</div>
             <div class="arrow-right comment-right">
-              <div class="all">打开APp查看全部</div>
+              <div class="all">打开APP查看全部</div>
               <img src="../assets/右粉.png" alt />
+            </div>
+          </div>
+          <div class="ask">
+            <div class="ask-one">
+              <div class="ask-one-left">
+                <div>
+                  <img src="../assets/问小.png" alt />
+                </div>
+                <div class="ask-que">ssk</div>
+              </div>
+              <div class="ask-one-right ask-que">3个回答</div>
+            </div>
+            <div class="ask-one">
+              <div class="ask-one-left">
+                <div>
+                  <img src="../assets/问小.png" alt />
+                </div>
+                <div class="ask-que">ssk</div>
+              </div>
+              <div class="ask-one-right ask-que">3个回答</div>
             </div>
           </div>
         </div>
       </div>
+      <!-- 店铺 -->
+      <div class="shop">
+        <div class="shop-top">
+          <div class="shop-top-left">
+            <div>
+              <img
+                src="//img.alicdn.com/imgextra/i2/379092709/TB2UlcZcuySBuNjy1zdXXXPxFXa_!!379092709.jpg_120x120Q50s50.jpg_.webp"
+                alt
+              />
+            </div>
+          </div>
+          <div class="shop-top-right">
+            <div class="shop--right-top">骆驼服饰旗舰店</div>
+            <div class="shop--right-top">
+              <img
+                src="//img.alicdn.com/tfs/TB1u5sBnlfH8KJjy1XbXXbLdXXa-198-36.png_120x120Q90s50.jpg_.webp?getAvatar=avatar"
+                alt
+              />
+            </div>
+          </div>
+        </div>
+        <div class="shop-mid">
+          <div class="shop-mid-desc">
+            <div class="baby-blue">
+              宝贝描述
+              <span>4.8</span>
+              <img src="../assets/减号.png" />
+            </div>
+            <!-- <div class="sort">4.8<img src="../assets/减号.png"></div> -->
+          </div>
+          <div class="shop-mid-desc">
+            <div class="baby-blue">
+              宝贝描述
+              <span>4.8</span>
+              <img src="../assets/减号.png" />
+            </div>
+            <!-- <div class="sort"></div> -->
+          </div>
+          <div class="shop-mid-desc">
+            <div class="baby-pink">
+              宝贝描述
+              <span>4.8</span>
+              <img src="../assets/箭头上.png" />
+            </div>
+            <!-- <div class="sort"></div> -->
+          </div>
+        </div>
+        <div class="shop-bottom">
+          <div>全部商品</div>
+          <div>进入店铺</div>
+        </div>
+      </div>
+      <!--看了又看 -->
+      <div class="look">
+        <div class="look-top">看了又看</div>
+        <div class="look-bottom">很抱歉，找不到相关商品</div>
+      </div>
+      <!-- 详情 -->
+      <div class="details">
+        <div class="nothing"></div>
+        <div class="detail">详情</div>
+        <div class="nothing"></div>
+      </div>
+      <!-- 介绍 -->
+      <div class="intro">"磨砂牛皮 防滑耐磨 舒适徒步 吸汗透气"</div>
+      <!-- 店铺推荐 -->
+      <div class="store-recommendation">
+        <div class="store-recommendation-top">店铺推荐</div>
+        <div class="store-recommendation-bottom">
+          <div class="shop-every">
+            <div class="shop-pic">
+              <img
+                src="//img.alicdn.com/sns_album/i3/379092709/O1CN01JTTJqQ1VslYZytghL_!!0-item_pic.jpg_260x260.jpg"
+                alt
+              />
+            </div>
+            <div class="shop-desc">骆驼春夏季登</div>
+            <div class="shop-price">￥ 489</div>
+          </div>
+          <div class="shop-every">
+            <div class="shop-pic">
+              <img
+                src="//img.alicdn.com/sns_album/i1/379092709/O1CN019dJ3gO1VslYYm4Ymd_!!0-item_pic.jpg_260x260.jpg"
+                alt
+              />
+            </div>
+            <div class="shop-desc">骆驼登山鞋男</div>
+            <div class="shop-price">￥489</div>
+          </div>
+          <div class="shop-every">
+            <div class="shop-pic">
+              <img
+                src="//img.alicdn.com/sns_album/i1/379092709/O1CN019uyK0G1VslYXtSpXk_!!0-item_pic.jpg_260x260.jpg"
+                alt
+              />
+            </div>
+            <div class="shop-desc">骆驼户外登山</div>
+            <div class="shop-price">￥468</div>
+          </div>
+          <div class="shop-every">
+            <div class="shop-pic">
+              <img
+                src="//img.alicdn.com/sns_album/i4/379092709/O1CN01VKp7nW1VslYQ79LWP_!!0-item_pic.jpg_260x260.jpg"
+                alt
+              />
+            </div>
+            <div class="shop-desc">骆驼高帮登山</div>
+            <div class="shop-price">￥628</div>
+          </div>
+          <div class="shop-every">
+            <div class="shop-pic">
+              <img
+                src="//img.alicdn.com/sns_album/i2/379092709/O1CN01lF8rRv1VslYYPUjba_!!0-item_pic.jpg_260x260.jpg"
+                alt
+              />
+            </div>
+            <div class="shop-desc">骆驼户外冲锋</div>
+            <div class="shop-price">￥1098</div>
+          </div>
+          <div class="shop-every">
+            <div class="shop-pic">
+              <img
+                src="//img.alicdn.com/sns_album/i4/379092709/O1CN01kymsz81VslYQ77CN0_!!0-item_pic.jpg_260x260.jpg"
+                alt
+              />
+            </div>
+            <div class="shop-desc">骆驼202年</div>
+            <div class="shop-price">￥998</div>
+          </div>
+        </div>
+      </div>
+      <!-- 一堆图片 -->
+      <div v-for="item in list[id].detaiImg" :key="item.id" class="pics">
+        <img :src="item" alt />
+      </div>
     </div>
-    <footer>woshihoaren</footer>
+    <!-- 最下面  -->
+    <footer>
+      <div class="foot-left">
+        <div class="foot-every">
+          <div class="foot-pic">
+            <img src="../assets/店铺.png" alt />
+          </div>
+          <div class="foot-name">店铺</div>
+        </div>
+        <div class="foot-every">
+          <div class="foot-pic">
+            <img src="../assets/客服.png" alt />
+          </div>
+          <div class="foot-name">客服</div>
+        </div>
+        <div class="foot-every">
+          <div class="foot-pic">
+            <img src="../assets/收藏.png" alt />
+          </div>
+          <div class="foot-name">收藏</div>
+        </div>
+      </div>
+      <div class="foot-right">
+        <div class="rob go-car" @click="goCar">加购物车</div>
+        <div class="rob now">马上抢</div>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -185,26 +366,47 @@ export default {
         pagination: {
           el: ".swiper-pagination",
           type: "fraction",
+          observe: true,
         }, // Some Swiper option/callback...
       },
       see: true,
-      bgwhite:false
-     
+      bgwhite: false,
+      scrolltop: 0,
+      firstTop:null,
+      secondTop:0
     };
+  },
+  watch:{
+    firstTop(newVal){
+      this.firstTop=newVal
+    },
+    secondTop(newVal){
+      this.secondTop=newVal
+    }
   },
   methods: {
     scrollEvent(e) {
-      // 滚动条距顶部距离
-      console.log(e.target.scrollTop);
-     if(e.target.scrollTop>=100){
-       this.see=false
-       this.bgwhite=true
-     }else{
-       this.bgwhite=false
-        this.see=true
-     }
+      this.scrolltop = event.target.scrollTop;
+      // console.log(e.target.scrollTop);
+      if (e.target.scrollTop >= 100) {
+        this.see = false;
+        this.bgwhite = true;
+      } else {
+        this.bgwhite = false;
+        this.see = true;
+      }
+      this.firstTop=document.querySelector(".comment").offsetHeight;
+      this.scrollTop=document.querySelector(".store-recommendation-top").offsetHeight
+      console.log(e.target.scrollTop,this.firstTop)
     },
-
+    changetop(n){
+      this.scrollTop=n
+    },
+    goCar() {
+      this.$router.push({
+        path: "/shoppingcart",
+      });
+    },
     time() {
       var that = this;
       var interval = setInterval(function timestampToTime() {
@@ -266,17 +468,231 @@ export default {
 </script>
 
 <style scoped>
-.v-enter,
-.v-leave-to {
-  background: #fff;
-  opacity: 0;
+.rob {
+  background: rgb(255, 149, 0);
+  width: 100%;
+  padding: 18px;
+  text-align: center;
+  white-space: nowrap;
 }
-.v-enter-active,
-.v-leave-active {
-  transition: all 2s;
+.now {
+  background: rgb(255, 0, 54);
+}
+.foot-right {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  font-size: 15px;
+}
+.foot-name {
+  font-size: 12px;
+}
+.foot-left img {
+  width: 100%;
+  height: 100%;
+}
+.foot-pic {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 2px;
+}
+.foot-every {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.foot-left {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
 }
 footer {
   flex-shrink: 0;
+  display: flex;
+  height: 6%;
+  align-items: center;
+}
+.pics {
+  width: 100%;
+}
+.container .pics {
+  margin: -3px;
+  padding: 0;
+}
+.pics img {
+  width: 100%;
+}
+.shop-price {
+  color: #ff0036;
+}
+.shop-pic img {
+  width: 100%;
+  height: 100%;
+}
+.shop-pic {
+  width: 66px;
+  height: 66px;
+}
+.shop-every {
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.store-recommendation-bottom {
+  display: flex;
+  width: 100%;
+  flex: 1 1 0;
+  height: auto;
+}
+.store-recommendation-top {
+  border-left: 3px solid #ff0036;
+  color: #666;
+  padding: 6px 0 0 12px;
+}
+.container .store-recommendation {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+.intro {
+  text-align: center;
+  line-height: 28px;
+  font-size: 16px;
+}
+.container .detail {
+  color: #999;
+  font-size: 12px;
+}
+.nothing {
+  width: 20%;
+  height: 0px;
+  border: 1px solid #999;
+  margin: 0 10px;
+}
+.container .details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(245, 245, 245);
+}
+.look-bottom {
+  text-align: center;
+}
+.look-top {
+  padding: 10px;
+}
+.look {
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+}
+.shop-bottom div {
+  color: #ff0036;
+  border: 1px solid #ff0036;
+  border-radius: 36px;
+  margin-right: 15px;
+  font-size: 13px;
+  padding: 5px 15px;
+}
+.shop-bottom {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.shop-mid-desc img {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.baby-pink span {
+  color: rgb(213, 28, 81);
+}
+.baby-pink img {
+  background: rgb(213, 28, 81);
+}
+.baby-blue img {
+  background: rgb(17, 147, 206);
+}
+.baby-blue span {
+  color: rgb(17, 147, 206);
+  margin-right: 3px;
+}
+.baby-pink,
+.baby-blue {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.shop-mid-desc {
+  display: flex;
+  justify-content: center;
+}
+.shop-mid {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  color: #999;
+  font-size: 12px;
+}
+.shop--right-top img {
+  width: 70%;
+}
+.shop-right-top {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+.shop-top-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.shop-top-left img {
+  width: 100%;
+}
+.shop-top-left div {
+  width: 54px;
+  height: 54px;
+  margin-right: 10px;
+}
+.shop-top {
+  display: flex;
+  justify-content: start;
+}
+.shop {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+.ask-one-right {
+  color: #999;
+  padding: 0 10px;
+}
+.ask-que {
+  font-size: 13px;
+  line-height: 25px;
+}
+.ask-one-left {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.ask-one-left img {
+  width: 15px;
+}
+.ask-one {
+  display: flex;
+  justify-content: space-between;
+}
+.ask {
+  display: flex;
+  flex-direction: column;
 }
 .comment-ask {
   margin-top: 5px;
@@ -285,13 +701,16 @@ footer {
   font-size: 10px;
   padding: 8px 0 0 0;
   border-bottom: 1px slid #ccc;
+  color: #999;
 }
 .commen-self {
   font-size: 13px;
-  padding: 8px 0 0 0;
+  padding: 8px 8px 0 0;
+  line-height: 20px;
 }
 .name {
   font-size: 12px;
+  color: #999;
 }
 .touxiang img {
   width: 100%;
@@ -317,19 +736,18 @@ footer {
 .shop-comment {
   display: flex;
   font-size: 14px;
-  /* flex-direction: column; */
   justify-content: space-between;
+  margin: 10px 0;
 }
 .comment-top {
   display: flex;
   flex-direction: column;
   padding-bottom: 5px;
+  border-bottom: 1px solid #ddd;
 }
 .comment {
-  margin-top: 10px;
   display: flex;
   flex-direction: column;
-  padding: 10px;
   background-color: #fff;
 }
 .choose-desc {
@@ -347,7 +765,6 @@ footer {
   background: #fff;
   display: flex;
   flex-direction: column;
-  padding: 10px;
 }
 .arrow-right img {
   width: 20px;
@@ -370,27 +787,20 @@ footer {
   display: flex;
   padding: 5px 0;
   font-size: 14px;
-  margin-bottom: 5px;
-
   align-items: center;
-  /* justify-content: space-between; */
 }
 .module-scene-item {
   display: flex;
   justify-content: space-between;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 .calculate img {
   width: 30%;
-  /* padding: 10px 0 5px 10px; */
 }
 .discount {
   display: flex;
-  /* margin-bottom: 5px; */
   flex-direction: column;
   background: #fff;
-  padding: 10px;
-  margin-bottom: 10px;
 }
 .promotion-red {
   color: #ff0036;
@@ -413,16 +823,11 @@ footer {
 }
 .color-gary {
   color: #999;
-
   margin-right: 10px;
-  /* padding: 5px 0; */
 }
 .promotion {
-  padding: 10px;
   display: flex;
-  /* flex-direction: column; */
   justify-content: start;
-  margin: 10px 0;
   background-color: #fff;
 }
 .info-pro {
@@ -440,7 +845,6 @@ footer {
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  /* background: green; */
 }
 .component-wrapper {
   background: #333;
@@ -502,10 +906,11 @@ footer {
   background: rgb(250, 33, 95);
   flex-grow: 1;
 }
-.price {
+.container .price {
   display: flex;
   justify-content: space-between;
-  /* padding: 0 10px; */
+  padding: 0;
+  margin: 0;
 }
 .swiper-pagination {
   position: absolute;
@@ -541,7 +946,7 @@ footer {
   flex-shrink: 0;
 }
 .three div {
-  padding: 10px;
+  padding-bottom: 4px;
 }
 .three {
   display: flex;
@@ -551,8 +956,9 @@ footer {
   align-items: center;
   color: rgb(153, 153, 153);
 }
-       
-.bgshite, .bgshite img{
+
+.bgshite,
+.bgshite img {
   background: #fff;
 }
 .title-top {
@@ -566,7 +972,7 @@ footer {
 }
 .title-fix {
   position: fixed;
-  height: 6%;
+  height: 5%;
   z-index: 5;
   padding: 0;
 }
@@ -574,16 +980,29 @@ footer {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 0;
   overflow: hidden;
   flex-shrink: 0;
+}
+.container .bgshite {
+  margin: 0;
+}
+.container > div {
+  background: #fff;
+  padding: 10px;
+  margin-top: 10px;
+}
+.big .container .title-pho {
+  padding: 0;
+  margin: 0;
+}
+.container .bgshite{
+  padding: 0;
 }
 .container {
   display: flex;
   flex-direction: column;
   background: rgb(250, 250, 250);
-  /* color: rgba(153, 153, 153,0.5); */
-  font-size: 1.2rem/1.5;
+  font-size: 14px;
   color: #333;
   overflow: auto;
 }
@@ -592,6 +1011,5 @@ footer {
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* overflow: hidden; */
 }
 </style>
