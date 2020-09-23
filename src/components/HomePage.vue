@@ -3,7 +3,7 @@
     <div class="titleBox">
       <div class="titleTopBox">
         <div class="titleTop">
-          <img src="../assets/home分类icon.png" class="icon" />
+          <img src="../assets/home分类icon.png" class="icon" @click="goClassify" />
           <img
             src="http://gw.alicdn.com/tfs/TB1wQw8qamWBuNjy1XaXXXCbXXa-237-41.png_240x10000.jpg_.webp"
             class="titleTop-img"
@@ -13,260 +13,263 @@
       </div>
 
       <div class="titleBottomBox">
-        <div class="titleBottom">
+        <div class="titleBottom" @click="searchDetail">
           <img src="../assets/home放大镜.png" alt />
           <span>搜索商品、 品牌</span>
         </div>
       </div>
-     </div>
+    </div>
     <!--顶部title-->
+    <div class="appBottom" @scroll="down">
+      <div class="iconListBox">
+        <a
+          href="https://suning.m.tmall.com/?refer=https%3A%2F%2Fwww.tmall.com%2F%3Fali_trackid%3D2%3Amm_26632258_3504122_55934697%3A1600737499_104_1470935868%26clk1%3D5592bb01bd3bcfe7b4f10f662e0c216d%26upsid%3D5592bb01bd3bcfe7b4f10f662e0c216d%26bxsign%3Dtbk1600737499175f5c73ece20145898a104659583359544&pos=1&acm=201704071.1003.64.1699747&scm=1003.64.201704071.OTHER_1547149173937_1699747&spm=a211ue.11501597.icon.1"
+          class="iconList-item"
+        >
+          <img
+            src="//gw.alicdn.com/tfs/TB1ISdWSFXXXXbFXXXXXXXXXXXX-146-147.png_110x10000.jpg_.webp"
+          />
+          <p>苏宁易购</p>
+        </a>
+        <a
+          href="https://chaoshi.m.tmall.com/?pos=2&acm=201704071.1003.64.1699747&_ig=shoumao&scm=1003.64.201704071.OTHER_1545931209467_1699747&spm=a211ue.11501597.icon.2"
+          class="iconList-item"
+        >
+          <img
+            src="//gw.alicdn.com/tfs/TB1wSoFa5qAXuNjy1XdXXaYcVXa-196-196.png?avatar=1_110x10000.jpg_.webp"
+            alt
+          />
+          <p>天猫超市</p>
+        </a>
+        <a
+          href="https://pages.tmall.com/wow/jinkou/act/zhiyingchaoshi?from=zebra:offline"
+          class="iconList-item"
+        >
+          <img
+            src="//gw.alicdn.com/tfs/TB1Jc0fSFXXXXXTapXXXXXXXXXX-146-147.png_110x10000.jpg_.webp"
+            alt
+          />
+          <p>天猫国际</p>
+        </a>
+        <a href="https://jhs.m.taobao.com/" class="iconList-item">
+          <img
+            src="//gw.alicdn.com/tfs/TB15lhOSFXXXXaKXpXXXXXXXXXX-147-147.png_110x10000.jpg_.webp"
+            alt
+          />
+          <p>聚划算</p>
+        </a>
+        <a href class="iconList-item">
+          <img
+            src="//gw.alicdn.com/tfs/TB12CFXSFXXXXcpapXXXXXXXXXX-146-147.png_110x10000.jpg_.webp"
+            alt
+          />
+          <p>分类</p>
+        </a>
+      </div>
+      <!--搜索框下面的icon分类-->
 
-    <div class="iconListBox">
+      <swiper ref="mySwiper" :options="swiperOptions" class="swiperBox">
+        <swiper-slide>
+          <img
+            src="//gw.alicdn.com/tfs/TB17emto4n1gK0jSZKPXXXvUXXa-1035-390.png_790x10000.jpg_.webp"
+            class="swiperImg"
+          />
+        </swiper-slide>
+
+        <swiper-slide>
+          <img
+            src="//img.alicdn.com/tps/i4///img.alicdn.com/tps/i4//TB1ZWfRVkT2gK0jSZFkSuwIQFXa.jpg_790x10000Q75.jpg_.webp"
+            class="swiperImg"
+          />
+        </swiper-slide>
+
+        <swiper-slide>
+          <img
+            src="//gw.alicdn.com/tps/i4/TB1KKaeKUz1gK0jSZLeSuv9kVXa.jpg_790x10000Q75.jpg_.webp"
+            class="swiperImg"
+          />
+        </swiper-slide>
+
+        <swiper-slide>
+          <img
+            src="//gw.alicdn.com/imgextra/i4/1450847/O1CN012SbcFB1I7y5dQMPBv_!!1450847-0-lubanu.jpg_790x10000Q75.jpg_.webp"
+            class="swiperImg"
+          />
+        </swiper-slide>
+
+        <swiper-slide>
+          <img
+            src="//gw.alicdn.com/imgextra/i3/1453939/O1CN01Lgt2bz1ey6j5KouAT_!!1453939-0-lubanu.jpg_790x10000Q75.jpg_.webp"
+            class="swiperImg"
+          />
+        </swiper-slide>
+
+        <swiper-slide>
+          <img
+            src="//gw.alicdn.com/imgextra/i2/1450847/O1CN01aM3TKr1I7y5i6X7Ad_!!1450847-0-lubanu.jpg_790x10000Q75.jpg_.webp"
+            class="swiperImg"
+          />
+        </swiper-slide>
+
+        <swiper-slide>
+          <img
+            src="//gw.alicdn.com/imgextra/i3/1450847/O1CN01U3rcpO1I7y5isyMue_!!1450847-0-lubanu.jpg_790x10000Q75.jpg_.webp"
+            class="swiperImg"
+          />
+        </swiper-slide>
+
+        <swiper-slide>
+          <img
+            src="//gw.alicdn.com/imgextra/i1/1453939/O1CN01jePyfg1ey6izvJhO7_!!1453939-0-lubanu.jpg_790x10000Q75.jpg_.webp"
+            class="swiperImg"
+          />
+        </swiper-slide>
+
+        <swiper-slide>
+          <img
+            src="//gw.alicdn.com/imgextra/i2/1453939/O1CN01IkPNQn1ey6jAkbouO_!!1453939-0-lubanu.jpg_790x10000Q75.jpg_.webp"
+            class="swiperImg"
+          />
+        </swiper-slide>
+
+        <div class="swiper-pagination" slot="pagination"></div>
+      </swiper>
+
       <a
-        href="https://suning.m.tmall.com/?refer=https%3A%2F%2Fwww.tmall.com%2F%3Fali_trackid%3D2%3Amm_26632258_3504122_55934697%3A1600737499_104_1470935868%26clk1%3D5592bb01bd3bcfe7b4f10f662e0c216d%26upsid%3D5592bb01bd3bcfe7b4f10f662e0c216d%26bxsign%3Dtbk1600737499175f5c73ece20145898a104659583359544&pos=1&acm=201704071.1003.64.1699747&scm=1003.64.201704071.OTHER_1547149173937_1699747&spm=a211ue.11501597.icon.1"
-        class="iconList-item"
-      >
-        <img src="//gw.alicdn.com/tfs/TB1ISdWSFXXXXbFXXXXXXXXXXXX-146-147.png_110x10000.jpg_.webp" />
-        <p>苏宁易购</p>
-      </a>
-      <a
-        href="https://chaoshi.m.tmall.com/?pos=2&acm=201704071.1003.64.1699747&_ig=shoumao&scm=1003.64.201704071.OTHER_1545931209467_1699747&spm=a211ue.11501597.icon.2"
-        class="iconList-item"
-      >
-        <img
-          src="//gw.alicdn.com/tfs/TB1wSoFa5qAXuNjy1XdXXaYcVXa-196-196.png?avatar=1_110x10000.jpg_.webp"
-          alt
-        />
-        <p>天猫超市</p>
-      </a>
-      <a
-        href="https://pages.tmall.com/wow/jinkou/act/zhiyingchaoshi?from=zebra:offline"
-        class="iconList-item"
-      >
-        <img
-          src="//gw.alicdn.com/tfs/TB1Jc0fSFXXXXXTapXXXXXXXXXX-146-147.png_110x10000.jpg_.webp"
-          alt
-        />
-        <p>天猫国际</p>
-      </a>
-      <a href="https://jhs.m.taobao.com/" class="iconList-item">
-        <img
-          src="//gw.alicdn.com/tfs/TB15lhOSFXXXXaKXpXXXXXXXXXX-147-147.png_110x10000.jpg_.webp"
-          alt
-        />
-        <p>聚划算</p>
-      </a>
-      <a href class="iconList-item">
-        <img
-          src="//gw.alicdn.com/tfs/TB12CFXSFXXXXcpapXXXXXXXXXX-146-147.png_110x10000.jpg_.webp"
-          alt
-        />
-        <p>分类</p>
-      </a>
-    </div>
-    <!--搜索框下面的icon分类-->
+        href="https://pages.tmall.com/wow/mit/act/download?mmstat=tb_homepage&src=tb_homepage&pos=1&acm=201809173.1003.2.8467293&scm=1003.2.201809173.OTHER_1596879715822_8467293&spm=a211ue.11501597.newerBanner.0"
+        class="redPackets"
+      ></a>
+      <!--天猫app新人的红包-->
 
-    <swiper ref="mySwiper" :options="swiperOptions" class="swiperBox">
-      <swiper-slide>
-        <img
-          src="//gw.alicdn.com/tfs/TB17emto4n1gK0jSZKPXXXvUXXa-1035-390.png_790x10000.jpg_.webp"
-          class="swiperImg"
-        />
-      </swiper-slide>
+      <div class="flashSale">
+        <div class="flashSale-item">
+          <span class="flashSale-item-titleL">限时特价</span>
+          <span class="flashSale-item-titleR">为你精选</span>
 
-      <swiper-slide>
-        <img
-          src="//img.alicdn.com/tps/i4///img.alicdn.com/tps/i4//TB1ZWfRVkT2gK0jSZFkSuwIQFXa.jpg_790x10000Q75.jpg_.webp"
-          class="swiperImg"
-        />
-      </swiper-slide>
-
-      <swiper-slide>
-        <img
-          src="//gw.alicdn.com/tps/i4/TB1KKaeKUz1gK0jSZLeSuv9kVXa.jpg_790x10000Q75.jpg_.webp"
-          class="swiperImg"
-        />
-      </swiper-slide>
-
-      <swiper-slide>
-        <img
-          src="//gw.alicdn.com/imgextra/i4/1450847/O1CN012SbcFB1I7y5dQMPBv_!!1450847-0-lubanu.jpg_790x10000Q75.jpg_.webp"
-          class="swiperImg"
-        />
-      </swiper-slide>
-
-      <swiper-slide>
-        <img
-          src="//gw.alicdn.com/imgextra/i3/1453939/O1CN01Lgt2bz1ey6j5KouAT_!!1453939-0-lubanu.jpg_790x10000Q75.jpg_.webp"
-          class="swiperImg"
-        />
-      </swiper-slide>
-
-      <swiper-slide>
-        <img
-          src="//gw.alicdn.com/imgextra/i2/1450847/O1CN01aM3TKr1I7y5i6X7Ad_!!1450847-0-lubanu.jpg_790x10000Q75.jpg_.webp"
-          class="swiperImg"
-        />
-      </swiper-slide>
-
-      <swiper-slide>
-        <img
-          src="//gw.alicdn.com/imgextra/i3/1450847/O1CN01U3rcpO1I7y5isyMue_!!1450847-0-lubanu.jpg_790x10000Q75.jpg_.webp"
-          class="swiperImg"
-        />
-      </swiper-slide>
-
-      <swiper-slide>
-        <img
-          src="//gw.alicdn.com/imgextra/i1/1453939/O1CN01jePyfg1ey6izvJhO7_!!1453939-0-lubanu.jpg_790x10000Q75.jpg_.webp"
-          class="swiperImg"
-        />
-      </swiper-slide>
-
-      <swiper-slide>
-        <img
-          src="//gw.alicdn.com/imgextra/i2/1453939/O1CN01IkPNQn1ey6jAkbouO_!!1453939-0-lubanu.jpg_790x10000Q75.jpg_.webp"
-          class="swiperImg"
-        />
-      </swiper-slide>
-
-      <div class="swiper-pagination" slot="pagination"></div>
-    </swiper>
-
-    <a
-      href="https://pages.tmall.com/wow/mit/act/download?mmstat=tb_homepage&src=tb_homepage&pos=1&acm=201809173.1003.2.8467293&scm=1003.2.201809173.OTHER_1596879715822_8467293&spm=a211ue.11501597.newerBanner.0"
-      class="redPackets"
-    ></a>
-    <!--天猫app新人的红包-->
-
-    <div class="flashSale">
-      <div class="flashSale-item">
-        <span class="flashSale-item-titleL">限时特价</span>
-        <span class="flashSale-item-titleR">为你精选</span>
-
-        <a
-          href="https://jupage.taobao.com/wow/tqg/act/tqgtmallhome?wh_weex=true&wh_biz=tm&wx_navbar_transparent=true&topJuIds=10002298903836,10002262006225&wx_navbar_hidden=true&wx_navbar_transparent=true&disableNav=YES&spm=a211ue.11501597.flash_sale.1"
-          class="flashSale-item-top timeShop"
-        >
-          <span>限时抢购</span>
-          <div class="countdown">
-            <span>{{hou}}</span>
-            <i>:</i>
-            <span>{{min}}</span>
-            <i>:</i>
-            <span>{{sec}}</span>
-          </div>
-        </a>
-        <a
-          href="https://jupage.taobao.com/wow/tqg/act/tqgtmallhome?wh_weex=true&wh_biz=tm&wx_navbar_transparent=true&topJuIds=10002298903836,10002262006225&wx_navbar_hidden=true&wx_navbar_transparent=true&disableNav=YES&spm=a211ue.11501597.flash_sale.1"
-          class="flashSale-item-bottom"
-        >
-          <img
-            src="//gw.alicdn.com/i1/2930255252/O1CN01uVjImy1ofSiHBe4Sh_!!2-item_pic.png_170x10000.jpg_.webp"
-            alt
-          />
-          <img
-            src="//gw.alicdn.com/bao/upload/TB1CFE.f5cKOu4jSZKbXXc19XXa.png_170x10000.jpg_.webp"
-            alt
-          />
-        </a>
-      </div>
-      <div class="flashSale-item">
-        <span class="flashSale-item-titleL">温暖de家</span>
-        <span class="flashSale-item-titleR">好货必买</span>
-
-        <a
-          href="https://pages.tmall.com/wow/fushi/act/hw2019-8?wh_biz=tm&wh_weex=true&itemId=625943685504,10008234286&wx_navbar_hidden=true&wx_navbar_transparent=true&disableNav=YES&spm=a211ue.11501597.flash_sale.5"
-          class="flashSale-item-top"
-        >
-          <span>天猫好物</span>
-        </a>
-        <a
-          href="https://pages.tmall.com/wow/fushi/act/hw2019-8?wh_biz=tm&wh_weex=true&itemId=625943685504,10008234286&wx_navbar_hidden=true&wx_navbar_transparent=true&disableNav=YES&spm=a211ue.11501597.flash_sale.5"
-          class="flashSale-item-bottom"
-        >
-          <img
-            src="//gw.alicdn.com/tps/i2/1105025069/TB2SkVjpS8YBeNkSnb4XXaevFXa_!!1105025069.png_170x10000.jpg_.webp"
-            alt
-          />
-          <img
-            src="//gw.alicdn.com/tps/bao/upload/TB12n6GEkL0gK0jSZFxXXXWHVXa.png_170x10000.jpg_.webp"
-            alt
-          />
-        </a>
-      </div>
-      <div class="flashSale-item">
-        <span class="flashSale-item-titleL">15天低价</span>
-        <span class="flashSale-item-titleR titleR">满100元减10</span>
-
-        <a href="https://jhs.m.taobao.com/" class="flashSale-item-top">
-          <span>聚划算</span>
-        </a>
-        <a href="https://jhs.m.taobao.com/" class="flashSale-item-bottom">
-          <img
-            src="//gw.alicdn.com/tps/TB2vsJKz3aTBuNjSszfXXXgfpXa_!!17-2-luban.png_170x10000.jpg_.webp"
-            alt
-          />
-          <img
-            src="//gw.alicdn.com/tps/O1CN01mZGMrY1CVt4O6uW0t_!!87-2-lubanu.png_170x10000.jpg_.webp"
-            alt
-          />
-        </a>
-      </div>
-      <div class="flashSale-item">
-        <span class="flashSale-item-titleL">人气爆款</span>
-        <span class="flashSale-item-titleR">大牌直降</span>
-
-        <a
-          href="https://market.m.taobao.com/app/tmall-wireless/tmsale/pages/home?wh_weex=true&wx_navbar_hidden=true&items=610417262837,601137725221&spm=a211ue.11501597.flash_sale.6#/main"
-          class="flashSale-item-top"
-        >
-          <span>天猫闪降</span>
-        </a>
-        <a
-          href="https://market.m.taobao.com/app/tmall-wireless/tmsale/pages/home?wh_weex=true&wx_navbar_hidden=true&items=610417262837,601137725221&spm=a211ue.11501597.flash_sale.6#/main"
-          class="flashSale-item-bottom"
-        >
-          <img
-            src="//gw.alicdn.com/tps/bao/upload/TB1EQ_CFqL7gK0jSZFBXXXZZpXa.png_170x10000.jpg_.webp"
-            alt
-          />
-          <img
-            src="//gw.alicdn.com/tps/i1/3465264485/O1CN01Ms35sO1j0AwEEXAs0_!!2-item_pic.png_170x10000.jpg_.webp"
-            alt
-          />
-        </a>
-      </div>
-    </div>
-    <!--限时抢购-->
-    <div class="youLike">
-      <p>猜你喜欢</p>
-      <div class="youLike-bottom">
-        <div class="youLike-item" v-for="item in list" :key="item.id">
-          <a href class="youLike-item-box">
-            <span class="youLike-item-img">
-              <img :src="item.img" alt />
-            </span>
-            <span class="productName">{{item.info}}</span>
-            <span class="ReturnTag">
-              <img
-                src="//gw.alicdn.com/tfs/TB1nYqRhX67gK0jSZPfXXahhFXa-209-42.png?getAvatar=1_140x10000.jpg_.webp"
-                alt
-              />
-            </span>
-            <div>
-              <span></span>
-              <span></span>
+          <a
+            href="https://jupage.taobao.com/wow/tqg/act/tqgtmallhome?wh_weex=true&wh_biz=tm&wx_navbar_transparent=true&topJuIds=10002298903836,10002262006225&wx_navbar_hidden=true&wx_navbar_transparent=true&disableNav=YES&spm=a211ue.11501597.flash_sale.1"
+            class="flashSale-item-top timeShop"
+          >
+            <span>限时抢购</span>
+            <div class="countdown">
+              <span>{{hou}}</span>
+              <i>:</i>
+              <span>{{min}}</span>
+              <i>:</i>
+              <span>{{sec}}</span>
             </div>
-            <div class="youLike-item-box-bottom">
-              <span class="price">￥{{item.price}}</span>
-              <span class="findSimilar">看相似</span>
-            </div>
+          </a>
+          <a
+            href="https://jupage.taobao.com/wow/tqg/act/tqgtmallhome?wh_weex=true&wh_biz=tm&wx_navbar_transparent=true&topJuIds=10002298903836,10002262006225&wx_navbar_hidden=true&wx_navbar_transparent=true&disableNav=YES&spm=a211ue.11501597.flash_sale.1"
+            class="flashSale-item-bottom"
+          >
+            <img
+              src="//gw.alicdn.com/i1/2930255252/O1CN01uVjImy1ofSiHBe4Sh_!!2-item_pic.png_170x10000.jpg_.webp"
+              alt
+            />
+            <img
+              src="//gw.alicdn.com/bao/upload/TB1CFE.f5cKOu4jSZKbXXc19XXa.png_170x10000.jpg_.webp"
+              alt
+            />
+          </a>
+        </div>
+        <div class="flashSale-item">
+          <span class="flashSale-item-titleL">温暖de家</span>
+          <span class="flashSale-item-titleR">好货必买</span>
+
+          <a
+            href="https://pages.tmall.com/wow/fushi/act/hw2019-8?wh_biz=tm&wh_weex=true&itemId=625943685504,10008234286&wx_navbar_hidden=true&wx_navbar_transparent=true&disableNav=YES&spm=a211ue.11501597.flash_sale.5"
+            class="flashSale-item-top"
+          >
+            <span>天猫好物</span>
+          </a>
+          <a
+            href="https://pages.tmall.com/wow/fushi/act/hw2019-8?wh_biz=tm&wh_weex=true&itemId=625943685504,10008234286&wx_navbar_hidden=true&wx_navbar_transparent=true&disableNav=YES&spm=a211ue.11501597.flash_sale.5"
+            class="flashSale-item-bottom"
+          >
+            <img
+              src="//gw.alicdn.com/tps/i2/1105025069/TB2SkVjpS8YBeNkSnb4XXaevFXa_!!1105025069.png_170x10000.jpg_.webp"
+              alt
+            />
+            <img
+              src="//gw.alicdn.com/tps/bao/upload/TB12n6GEkL0gK0jSZFxXXXWHVXa.png_170x10000.jpg_.webp"
+              alt
+            />
+          </a>
+        </div>
+        <div class="flashSale-item">
+          <span class="flashSale-item-titleL">15天低价</span>
+          <span class="flashSale-item-titleR titleR">满100元减10</span>
+
+          <a href="https://jhs.m.taobao.com/" class="flashSale-item-top">
+            <span>聚划算</span>
+          </a>
+          <a href="https://jhs.m.taobao.com/" class="flashSale-item-bottom">
+            <img
+              src="//gw.alicdn.com/tps/TB2vsJKz3aTBuNjSszfXXXgfpXa_!!17-2-luban.png_170x10000.jpg_.webp"
+              alt
+            />
+            <img
+              src="//gw.alicdn.com/tps/O1CN01mZGMrY1CVt4O6uW0t_!!87-2-lubanu.png_170x10000.jpg_.webp"
+              alt
+            />
+          </a>
+        </div>
+        <div class="flashSale-item">
+          <span class="flashSale-item-titleL">人气爆款</span>
+          <span class="flashSale-item-titleR">大牌直降</span>
+
+          <a
+            href="https://market.m.taobao.com/app/tmall-wireless/tmsale/pages/home?wh_weex=true&wx_navbar_hidden=true&items=610417262837,601137725221&spm=a211ue.11501597.flash_sale.6#/main"
+            class="flashSale-item-top"
+          >
+            <span>天猫闪降</span>
+          </a>
+          <a
+            href="https://market.m.taobao.com/app/tmall-wireless/tmsale/pages/home?wh_weex=true&wx_navbar_hidden=true&items=610417262837,601137725221&spm=a211ue.11501597.flash_sale.6#/main"
+            class="flashSale-item-bottom"
+          >
+            <img
+              src="//gw.alicdn.com/tps/bao/upload/TB1EQ_CFqL7gK0jSZFBXXXZZpXa.png_170x10000.jpg_.webp"
+              alt
+            />
+            <img
+              src="//gw.alicdn.com/tps/i1/3465264485/O1CN01Ms35sO1j0AwEEXAs0_!!2-item_pic.png_170x10000.jpg_.webp"
+              alt
+            />
           </a>
         </div>
       </div>
+      <!--限时抢购-->
+      <div class="youLike">
+        <p>猜你喜欢</p>
+        <div class="youLike-bottom">
+          <div class="youLike-item" v-for="item in list" :key="item.id" @click="goDetail">
+            <a href="javascript:void(0)" class="youLike-item-box">
+              <span class="youLike-item-img">
+                <img :src="item.img" alt />
+              </span>
+              <span class="productName">{{item.info}}</span>
+              <span class="ReturnTag">
+                <img
+                  src="//gw.alicdn.com/tfs/TB1nYqRhX67gK0jSZPfXXahhFXa-209-42.png?getAvatar=1_140x10000.jpg_.webp"
+                  alt
+                />
+              </span>
+              <div>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="youLike-item-box-bottom">
+                <span class="price">￥{{item.price}}</span>
+                <span class="findSimilar">看相似</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!--猜你喜欢-->
     </div>
-    <!--猜你喜欢-->
   </div>
 </template>
 
@@ -296,15 +299,35 @@ export default {
     axios
       .get(url)
       .then(function (response) {
-        // console.log(response);
+        //  console.log(response);
         that.list = response.data.response;
-        console.log(that.list);
+        // console.log(that.list);
       })
       .catch(function (error) {
         console.log(error);
       });
   },
   methods: {
+    down() {
+      console.log("我滑动了");
+    },
+
+    searchDetail() {
+      this.$router.push("./searchDetail");
+    },
+
+    goClassify() {
+      this.$router.push("/classify");
+    },
+    goDetail() {
+      this.$router.push({
+        path:"/details",
+        query:{
+          id:0
+        }
+      })
+    },
+
     time() {
       var that = this;
       var interval = setInterval(function timestampToTime() {
@@ -333,9 +356,6 @@ export default {
             (that.sec = "00");
         }
       }, 100);
-    },
-    scoll() {
-      console.log("0000");
     },
   },
   computed: {
@@ -375,9 +395,18 @@ i {
 
 .titleBox {
   width: 100%;
+  height: 12%;
   display: flex;
   flex-direction: column;
   position: relative;
+}
+.appBottom {
+  width: 100%;
+  height: 88%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .titleTopBox {

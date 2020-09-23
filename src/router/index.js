@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Details from '../components/Details.vue'
 import HomePage from "../components/HomePage.vue"
+import SearchDetail from "../components/searchDetail.vue"
+import Classify from "../components/Classify.vue"
 
 Vue.use(VueRouter)
 
@@ -16,6 +18,14 @@ const routes = [
     path: '/',
     component: HomePage
   },
+  {
+    path:"/searchDetail",
+    component:SearchDetail
+  },
+  {
+    path:"/classify",
+    component:Classify
+  }
  
 
 ]

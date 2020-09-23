@@ -1,0 +1,23 @@
+{
+    "code": 200,
+    "status": "成功",
+    "response": [{
+        "id": 0,
+        "img": [
+            "//img.alicdn.com/tfs/TB1YTCkqXOWBuNjy0FiXXXFxVXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+            "//img.alicdn.com/tfs/TB1I0W2qf1TBuNjy0FjXXajyXXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+            "//img.alicdn.com/tfs/TB1XzKuqXuWBuNjSspnXXX1NVXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+            "//img.alicdn.com/tfs/TB1JjmnqkOWBuNjSsppXXXPgpXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+            "//img.alicdn.com/tfs/TB1kO5nqkOWBuNjSsppXXXPgpXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+            "//img.alicdn.com/tfs/TB1H6enqkOWBuNjSsppXXXPgpXa-100-100.jpg_210x210Q50s50.jpg_.webp"
+        ],
+        "name": [
+            "连衣裙",
+            "T恤",
+            "衬衫",
+            "雪纺衫",
+            "裤子",
+            "牛仔裤"
+        ]
+    }]
+}
