@@ -251,7 +251,7 @@
       <div class="youLike">
         <p>猜你喜欢</p>
         <div class="youLike-bottom">
-          <div class="youLike-item" v-for="(item,index) in list" :key="item.id" @click="goDetail(index)">
+          <div class="youLike-item" v-for="item in list" :key="item.id" @click="goDetail()">
             <a href="javascript:void(0)" class="youLike-item-box">
               <span class="youLike-item-img">
                 <img :src="item.img" alt />
@@ -336,7 +336,7 @@ export default {
       this.$router.push({
         path:"/details",
         query:{
-          id:this.list[index].id
+          id:0
         }
       })
     },
