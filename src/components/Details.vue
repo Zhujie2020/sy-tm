@@ -1,21 +1,32 @@
 <template>
   <div class="big">
-    <div class="title title-fix">
-        <div class="title-top">
-          <div class="pic">
+      <div class="title title-fix" v-if="see">
+        <div class="title-top-brand title-top">
+          <div class="pic" @click="$router.go(-1)">
             <img src="../assets/左白.png" />
-          </div>
-          <div class="three">
-            <div>商品</div>
-            <div class="active">评论</div>
-            <div>详情</div>
           </div>
           <div class="pic">
             <img src="../assets/车白.png" />
           </div>
         </div>
-    </div>
-    <div class="container" v-if="list[id]" >
+      </div>
+      <!-- else -->
+      <div class="title title-fix bgshite" v-if="bgwhite">
+        <div class="title-top-brand title-top">
+          <div class="pic" @click="$router.go(-1)">
+            <img src="../assets/左灰.png" />
+          </div>
+          <div class="three">
+            <div class="active">商品</div>
+            <div>评价</div>
+            <div>详情</div>
+          </div>
+          <div class="pic">
+            <img src="../assets/车灰.png" />
+          </div>
+        </div>
+      </div>
+    <div class="container" v-if="list[id]" @scroll="scrollEvent">
       <!-- 图片和上面的标题  -->
       <div class="title">
         <div class="photo">
@@ -141,7 +152,7 @@
             </div>
             <div class="name">君**3</div>
           </div>
-          <!-- <div class="commen-self">{{list[id][comment-one]}}</div> -->
+          <div class="commen-self">{{list[id].comments[0]}}</div>
           <div class="content">2020-09-18 颜色分类：A83149638 紫红 女；鞋码：38</div>
         </div>
         <div class="comment-ask">
@@ -173,12 +184,27 @@ export default {
       swiperOptions: {
         pagination: {
           el: ".swiper-pagination",
-          type: "fraction"
-        } // Some Swiper option/callback...
-      }
+          type: "fraction",
+        }, // Some Swiper option/callback...
+      },
+      see: true,
+      bgwhite:false
+     
     };
   },
   methods: {
+    scrollEvent(e) {
+      // 滚动条距顶部距离
+      console.log(e.target.scrollTop);
+     if(e.target.scrollTop>=100){
+       this.see=false
+       this.bgwhite=true
+     }else{
+       this.bgwhite=false
+        this.see=true
+     }
+    },
+
     time() {
       var that = this;
       var interval = setInterval(function timestampToTime() {
@@ -209,7 +235,7 @@ export default {
             (that.sec = "00");
         }
       }, 100);
-    }
+    },
   },
   created() {
     let that = this;
@@ -217,12 +243,12 @@ export default {
     // 为给定 ID 的 user 创建请求
     axios
       .get(url)
-      .then(function(response) {
+      .then(function (response) {
         // console.log(response);
         that.list = response.data.response;
         console.log(that.list);
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
 
@@ -234,13 +260,22 @@ export default {
     },
     id() {
       return this.$route.query.id;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
-footer{
+.v-enter,
+.v-leave-to {
+  background: #fff;
+  opacity: 0;
+}
+.v-enter-active,
+.v-leave-active {
+  transition: all 2s;
+}
+footer {
   flex-shrink: 0;
 }
 .comment-ask {
@@ -429,7 +464,7 @@ footer{
 .price-right {
   background: rgb(253, 238, 127);
   position: relative;
-  width: 20%;
+  width: 22%;
   color: rgb(213, 28, 81);
   display: flex;
   align-items: center;
@@ -437,6 +472,7 @@ footer{
   flex-wrap: nowrap;
   flex-direction: column;
   justify-content: center;
+  padding-right: 8px;
 }
 
 .sale {
@@ -494,13 +530,14 @@ footer{
   width: 30%;
   background: rgba(135, 135, 135, 0.5);
   border-radius: 50%;
-  margin: 0 10px;
+  margin: 10px;
   padding: 2px;
 }
+
 .pic {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
   flex-shrink: 0;
 }
 .three div {
@@ -510,22 +547,26 @@ footer{
   display: flex;
   justify-content: space-between;
   flex-grow: 1;
+  flex-shrink: 0;
   align-items: center;
-  /* font-size: 14px; */
   color: rgb(153, 153, 153);
-  /* flex-shrink: 1; */
 }
-.title-top :nth-child(3){
-  justify-content: flex-end;
+       
+.bgshite, .bgshite img{
+  background: #fff;
 }
 .title-top {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
-.title-fix{
+.title-fix .title-top-brand {
+  display: flex;
+  justify-content: space-between;
+}
+.title-fix {
   position: fixed;
-  height: 8%;
+  height: 6%;
   z-index: 5;
   padding: 0;
 }
@@ -535,7 +576,7 @@ footer{
   flex-direction: column;
   padding: 0;
   overflow: hidden;
-flex-shrink: 0;
+  flex-shrink: 0;
 }
 .container {
   display: flex;
@@ -545,7 +586,6 @@ flex-shrink: 0;
   font-size: 1.2rem/1.5;
   color: #333;
   overflow: auto;
-  
 }
 .big {
   height: 100%;
