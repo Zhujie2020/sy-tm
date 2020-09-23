@@ -1,26 +1,33 @@
 <template>
   <div class="box">
-    <div class="titleBox">
+    <div class="titleBox" :style="'height:'+titleBoxH+'%'">
       <div class="titleTopBox">
         <div class="titleTop">
           <img src="../assets/home分类icon.png" class="icon" @click="goClassify" />
-          <img
-            src="http://gw.alicdn.com/tfs/TB1wQw8qamWBuNjy1XaXXXCbXXa-237-41.png_240x10000.jpg_.webp"
-            class="titleTop-img"
-          />
+
+          <transition name="titleDis">
+            <img
+              src="http://gw.alicdn.com/tfs/TB1wQw8qamWBuNjy1XaXXXCbXXa-237-41.png_240x10000.jpg_.webp"
+              class="titleTop-img"
+            v-show="showTitle" />
+          </transition>
+
+
           <span class="titleTop-login">登录</span>
         </div>
       </div>
-
-      <div class="titleBottomBox">
+  <transition name="searchMove">
+      <div class="titleBottomBox" :style="'top:'+searchTop+'px;transform: scale('+searchScale+');'">
         <div class="titleBottom" @click="searchDetail">
           <img src="../assets/home放大镜.png" alt />
           <span>搜索商品、 品牌</span>
         </div>
       </div>
+  </transition>
+
     </div>
     <!--顶部title-->
-    <div class="appBottom" @scroll="down">
+    <div class="appBottom" @scroll="scrollEvent">
       <div class="iconListBox">
         <a
           href="https://suning.m.tmall.com/?refer=https%3A%2F%2Fwww.tmall.com%2F%3Fali_trackid%3D2%3Amm_26632258_3504122_55934697%3A1600737499_104_1470935868%26clk1%3D5592bb01bd3bcfe7b4f10f662e0c216d%26upsid%3D5592bb01bd3bcfe7b4f10f662e0c216d%26bxsign%3Dtbk1600737499175f5c73ece20145898a104659583359544&pos=1&acm=201704071.1003.64.1699747&scm=1003.64.201704071.OTHER_1547149173937_1699747&spm=a211ue.11501597.icon.1"
@@ -244,7 +251,7 @@
       <div class="youLike">
         <p>猜你喜欢</p>
         <div class="youLike-bottom">
-          <div class="youLike-item" v-for="item in list" :key="item.id" @click="goDetail">
+          <div class="youLike-item" v-for="(item,index) in list" :key="item.id" @click="goDetail(index)">
             <a href="javascript:void(0)" class="youLike-item-box">
               <span class="youLike-item-img">
                 <img :src="item.img" alt />
@@ -270,6 +277,10 @@
       </div>
       <!--猜你喜欢-->
     </div>
+
+    <img src="../assets/回顶部.jpg" alt="" class="goTop" v-if="goTopShow">
+  
+    <!-- 回顶部 -->
   </div>
 </template>
 
@@ -290,6 +301,11 @@ export default {
       min: 0,
       sec: 0,
       list: [],
+      showTitle:true,
+      searchTop:40,
+      searchScale:1,
+      goTopShow:false,
+      titleBoxH:12
     };
   },
   created() {
@@ -308,9 +324,6 @@ export default {
       });
   },
   methods: {
-    down() {
-      console.log("我滑动了");
-    },
 
     searchDetail() {
       this.$router.push("./searchDetail");
@@ -323,9 +336,29 @@ export default {
       this.$router.push({
         path:"/details",
         query:{
-          id:0
+          id:this.list[index].id
         }
       })
+    },
+
+    scrollEvent(e){
+      // console.log(e.target.scrollTop);
+      if(e.target.scrollTop>50){
+        this.showTitle=false,
+        this.searchTop=2;
+        this.searchScale=0.8,
+        this.titleBoxH=6
+      }else {
+         this.showTitle=true,
+          this.searchTop=40
+          this.searchScale=1
+          this.titleBoxH=12
+      }
+      if(e.target.scrollTop>200){
+        this.goTopShow=true
+      }else {
+        this.goTopShow=false
+      }
     },
 
     time() {
@@ -401,6 +434,7 @@ i {
   position: relative;
 }
 .appBottom {
+  margin-top: 10px;
   width: 100%;
   height: 88%;
   overflow: auto;
@@ -410,7 +444,8 @@ i {
 }
 
 .titleTopBox {
-  height: 44px;
+  flex-shrink: 0;
+  height: 47px;
   display: flex;
   justify-content: center;
   background-color: #ff0036;
@@ -435,12 +470,16 @@ i {
 }
 
 .titleBottomBox {
+  position: absolute;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 36px;
+  height: 47px;
   background-color: #ff0036;
   padding: 20px 0 30px 0;
+  z-index: 2;
+  transition: all 0.3s;
 }
 
 .titleBottom {
@@ -686,5 +725,40 @@ i {
 }
 .ReturnTag img {
   width: 70px;
+}
+
+
+.titleDis-enter-active,
+.titleDis-leave-active{
+  transition: all 0.3s;
+}
+.titleDis-enter{
+  transform: scaleX(-4) translateY(-150px) ;
+}
+.titleDis-leave-to{
+  transform: scaleX(-4) translateY(-150px) ;
+}
+
+.searchMove-enter-active,
+.titleDis-leave-active{
+  transition: all 0.3s;
+}
+.searchMove-enter{
+  transform: scaleX(0.5)  ;
+}
+.searchMove-leave-to{
+  transform: scaleX(0.5)  ;
+}
+.goTop{
+  position: fixed;
+  height: 44px;
+  width: 44px;
+  bottom: 40px;
+  right: 5px;
+  z-index: 10;
+}
+.goTop img{
+  width: 44px;
+  height: 44px;
 }
 </style>

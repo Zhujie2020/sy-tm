@@ -17,7 +17,4 @@ html {
     height: 100%;
 }
 
-.swiper-pagination-bullet {
-    background-color: black !important;
-}
 </style>
