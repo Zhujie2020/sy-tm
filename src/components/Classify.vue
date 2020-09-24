@@ -4,55 +4,50 @@
       <p>全部分类</p>
     </div>
     <div class="container">
+      
       <div class="container-left">
-        <div :class="{}" v-for="item in leftList" :key="item.key" @click="changePage">
-          <p class="container-left-item" @click="changePage">{{item.name}}</p>
+        <div v-for="(item,index) in list" :key="index">
+          <p class="container-left-item" @click="changePage(index)" :class="index==num?'active':''">{{item}}</p>
         </div>
       </div>
-      <div class="container-right">
-        <component :is="pageName"></component>
-      </div>
+
+    <component :is="comName" class="comPage"></component>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import vecommend from "./classify/Vecommend.vue"
+
 export default {
   data(){
     return{
-      list:[],
-      leftList:[],
-      pageName:""
+      pageName:"",
+      num:0,
+      list:["为您推荐","国际大牌","天猫国际","女装","女鞋","男装","男鞋","内衣","母婴","手机","数码","家电","美妆","家纺"],
+      rightPage:[] ,
+      comName:vecommend
     }
   },
   
   methods:{
-    changePage(){
-
+    changePage(index){
+      // console.log(index);
+      this.num=index;
+      // console.log(this.num);
     }
   },
 
-  created(){
-    let that=this;
-    let url="http://127.0.0.1:5500/src/data/classify.json";
-    axios
-    .get(url)
-    .then(function (response) {
-      console.log(response);
-      that.list=response.data.response
-      that.leftList=response.data.productsList
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
-  },
 
 }
+
 </script>
 
 <style scoped>
-
+.active{
+  background: white;
+}
 .classify{
   width: 100%;
   height: 100%;
@@ -62,7 +57,6 @@ export default {
 .title{
   width: 100%;
   height:6%;
-  background: olive;
   display: flex;
   align-items: center;
   background: #EEE;
@@ -76,7 +70,6 @@ export default {
   width: 100%;
   height: 94%;
   flex-shrink: 0;
-  background: gainsboro;
   overflow: auto;
   display: flex;
 }
@@ -88,11 +81,13 @@ export default {
   display: flex;
   flex-direction:column ;
 }
-.container-right{
+
+.comPage{
+  display: flex;
+  flex-direction: column;
   width: 77%;
   height: 100%;
   overflow: auto;
-  background: rgb(191, 185, 250);
 }
 .container-left-item{
   width: 100%;
@@ -101,4 +96,25 @@ export default {
   text-align: center;
   font-size: 14px;
 }
+.rightItem{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.rightTitle{
+  width: 100%;
+  height: 60px;
+}
+.rightTitle p{
+  height: 60px;
+  line-height: 60px;
+  padding-left: 10px;
+  font-size: 14px;
+}
+.rightContain{
+  width: 100%;
+  display: flex;
+
+}
+
 </style>

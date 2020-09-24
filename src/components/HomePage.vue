@@ -293,7 +293,6 @@ export default {
         pagination: {
           el: ".swiper-pagination",
         },
-        // Some Swiper option/callback...
         loop: true,
         autoplay: true,
       },

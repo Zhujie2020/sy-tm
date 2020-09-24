@@ -503,7 +503,7 @@ export default {
     id() {
       return this.$route.query.id;
     },
-  },
+  }
 };
 </script>
 

@@ -1,0 +1,133 @@
+{
+    "list": [{
+        "id": 0,
+        "title": "女装",
+        "contain": [
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1YTCkqXOWBuNjy0FiXXXFxVXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "连衣裙"
+                },
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1I0W2qf1TBuNjy0FjXXajyXXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "T恤"
+                },
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1XzKuqXuWBuNjSspnXXX1NVXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "衬衫"
+                },
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1JjmnqkOWBuNjSsppXXXPgpXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "雪纺衫"
+                },
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1kO5nqkOWBuNjSsppXXXPgpXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "裤子"
+                },
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1H6enqkOWBuNjSsppXXXPgpXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "牛仔裤"
+                }
+                
+        ]
+
+    },
+    {
+        "id": 0,
+        "title": "女鞋",
+        "contain": [
+            {
+                    "pic": "//img.alicdn.com/tfs/TB1YTCkqXOWBuNjy0FiXXXFxVXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "连衣裙"
+                },
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1I0W2qf1TBuNjy0FjXXajyXXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "T恤"
+                },
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1XzKuqXuWBuNjSspnXXX1NVXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "衬衫"
+                },
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1JjmnqkOWBuNjSsppXXXPgpXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "雪纺衫"
+                },
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1kO5nqkOWBuNjSsppXXXPgpXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "裤子"
+                },
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1H6enqkOWBuNjSsppXXXPgpXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "牛仔裤"
+                }
+                
+        ]
+
+    },
+    {
+        "id": 0,
+        "title": "女鞋",
+        "contain": [
+            {
+                    "pic": "//img.alicdn.com/tfs/TB1YTCkqXOWBuNjy0FiXXXFxVXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "连衣裙"
+                },
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1I0W2qf1TBuNjy0FjXXajyXXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "T恤"
+                },
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1XzKuqXuWBuNjSspnXXX1NVXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "衬衫"
+                },
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1JjmnqkOWBuNjSsppXXXPgpXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "雪纺衫"
+                },
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1kO5nqkOWBuNjSsppXXXPgpXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "裤子"
+                },
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1H6enqkOWBuNjSsppXXXPgpXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "牛仔裤"
+                }
+                
+        ]
+
+    },
+    {
+        "id": 0,
+        "title": "女鞋",
+        "contain": [
+            {
+                    "pic": "//img.alicdn.com/tfs/TB1YTCkqXOWBuNjy0FiXXXFxVXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "连衣裙"
+                },
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1I0W2qf1TBuNjy0FjXXajyXXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "T恤"
+                },
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1XzKuqXuWBuNjSspnXXX1NVXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "衬衫"
+                },
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1JjmnqkOWBuNjSsppXXXPgpXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "雪纺衫"
+                },
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1kO5nqkOWBuNjSsppXXXPgpXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "裤子"
+                },
+                {
+                    "pic": "//img.alicdn.com/tfs/TB1H6enqkOWBuNjSsppXXXPgpXa-100-100.jpg_210x210Q50s50.jpg_.webp",
+                    "name": "牛仔裤"
+                }
+                
+        ]
+
+    }]
+
+}
+
+
