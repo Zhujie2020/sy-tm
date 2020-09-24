@@ -5,7 +5,7 @@ import HomePage from "../components/HomePage.vue"
 import ShoppingCart from "../components/ShoppingCart.vue"
 import SearchDetail from "../components/searchDetail.vue"
 import Classify from "../components/Classify.vue"
-
+import SignIn from "../components/SignIn.vue"
 Vue.use(VueRouter)
 
 const routes = [
@@ -30,8 +30,11 @@ const routes = [
   {
     path:"/classify",
     component:Classify
+  },
+  {
+    path:"/signin",
+    component:SignIn
   }
- 
 
 ]
 
