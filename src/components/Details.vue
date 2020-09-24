@@ -1,7 +1,7 @@
 <template>
   <div class="big">
-    <div class="title title-fix" v-if="see">
-      <div class="title-top-brand title-top">
+    <div class="title-fix" v-if="see">
+      <div class="title-top-brand">
         <div class="pic" @click="$router.go(-1)">
           <img src="../assets/左白.png" />
         </div>
@@ -10,7 +10,7 @@
         </div>
       </div>
     </div>
-    <div class="container" v-if="list[id]" @scroll="scrollEvent">
+    <div class="container" v-if="list[id]" @scroll="scrollEvent" ref="container">
       <!-- else -->
       <div class="title title-fix bgshite" v-if="bgwhite">
         <div class="title-top-brand title-top">
@@ -18,9 +18,33 @@
             <img src="../assets/左灰.png" />
           </div>
           <div class="three">
-            <div :class="{active:this.scrolltop>0&&this.scrolltop<=this.firstTop}" @click="changetop(0)"  @scroll="scrollEvent">商品</div>
-            <div  :class="{active:this.scrolltop>this.firstTop&&this.scrolltop<=this.secondTop}" @click="changetop(firstTop)" @scroll="scrollEvent">评价</div>
-            <div  :class="{active:this.scrolltop>this.secondTop}" @click="changetop(scrollTop)" @scroll="scrollEvent">详情</div>
+            <div
+              :class="{
+                active: scrolltop > 0 && scrolltop <= firstTop,
+              }"
+              @click="changetop(0)"
+              @scroll="scrollEvent"
+            >
+              商品
+            </div>
+            <div
+              :class="{
+                active:
+                  scrolltop > firstTop &&
+                  scrolltop <= secondTop,
+              }"
+              @click="changetop(firstTop)"
+              @scroll="scrollEvent"
+            >
+              评价
+            </div>
+            <div
+              :class="{ active: scrolltop > secondTop }"
+              @click="changetop(secondTop)"
+              @scroll="scrollEvent"
+            >
+              详情
+            </div>
           </div>
           <div class="pic">
             <img src="../assets/车灰.png" />
@@ -30,8 +54,17 @@
       <!-- 轮播  -->
       <div class="title title-pho">
         <div class="photo">
-          <swiper v-if="list[id]" ref="mySwiper2" :options="swiperOptions" class="swiper-one">
-            <swiper-slide class="swiper-two" v-for="item in list[id].swiper" :key="item.id">
+          <swiper
+            v-if="list[id]"
+            ref="mySwiper2"
+            :options="swiperOptions"
+            class="swiper-one"
+          >
+            <swiper-slide
+              class="swiper-two"
+              v-for="item in list[id].swiper"
+              :key="item.id"
+            >
               <img :src="item" alt />
             </swiper-slide>
           </swiper>
@@ -43,12 +76,12 @@
         <div class="price-left" v-if="list[id]">
           <div class="price-big">
             ￥
-            <span class="money">{{list[id].price}}</span>
+            <span class="money">{{ list[id].price }}</span>
           </div>
           <div class="price-small">
             <div class="noprice">
               ￥
-              <span>{{list[id].noprice}}</span>
+              <span>{{ list[id].noprice }}</span>
             </div>
             <div class="sale">9件已售</div>
           </div>
@@ -56,10 +89,10 @@
         <div class="price-right">
           <div>距结束剩余</div>
           <div class="time">
-            <div class="component-wrapper">{{hou}}:</div>
-            <div class="component-wrapper">{{min}}:</div>
-            <div class="component-wrapper">{{sec}}:</div>
-            <div class="component-wrapper">0{{ssec}}</div>
+            <div class="component-wrapper">{{ hou }}:</div>
+            <div class="component-wrapper">{{ min }}:</div>
+            <div class="component-wrapper">{{ sec }}:</div>
+            <div class="component-wrapper">0{{ ssec }}</div>
           </div>
           <div class="triangle"></div>
         </div>
@@ -67,7 +100,7 @@
       <!--介绍-->
       <div class="info">
         <div class="info-pro" v-if="list[id]">
-          <div class="info-item">{{list[id].info}}</div>
+          <div class="info-item">{{ list[id].info }}</div>
         </div>
         <div class="information">
           <div>运费:0.00</div>
@@ -134,7 +167,7 @@
         </div>
       </div>
       <!-- 评论 -->
-      <div class="comment">
+      <div class="comment" ref="comment">
         <div class="comment-top">
           <div class="shop-comment">
             <div class="comment-left">商品评价(1033)</div>
@@ -152,8 +185,10 @@
             </div>
             <div class="name">君**3</div>
           </div>
-          <div class="commen-self">{{list[id].comments[0]}}</div>
-          <div class="content">2020-09-18 颜色分类：A83149638 紫红 女；鞋码：38</div>
+          <div class="commen-self">{{ list[id].comments[0] }}</div>
+          <div class="content">
+            2020-09-18 颜色分类：A83149638 紫红 女；鞋码：38
+          </div>
         </div>
         <div class="comment-ask">
           <div class="shop-comment">
@@ -362,6 +397,11 @@ export default {
       min: 0,
       sec: 0,
       ssec: 0,
+      see: true,
+      bgwhite: false,
+      scrolltop: 0,
+      firstTop: 0,
+      secondTop: 0,
       swiperOptions: {
         pagination: {
           el: ".swiper-pagination",
@@ -369,23 +409,19 @@ export default {
           observe: true,
         }, // Some Swiper option/callback...
       },
-      see: true,
-      bgwhite: false,
-      scrolltop: 0,
-      firstTop:null,
-      secondTop:0
     };
   },
-  watch:{
-    firstTop(newVal){
-      this.firstTop=newVal
+  watch: {
+    firstTop(newVal) {
+      this.firstTop = newVal;
     },
-    secondTop(newVal){
-      this.secondTop=newVal
-    }
+    secondTop(newVal) {
+      this.secondTop = newVal;
+    },
   },
   methods: {
     scrollEvent(e) {
+      // console.log(this.$refs.comment.offsetTop);
       this.scrolltop = event.target.scrollTop;
       // console.log(e.target.scrollTop);
       if (e.target.scrollTop >= 100) {
@@ -395,12 +431,16 @@ export default {
         this.bgwhite = false;
         this.see = true;
       }
-      this.firstTop=document.querySelector(".comment").offsetHeight;
-      this.scrollTop=document.querySelector(".store-recommendation-top").offsetHeight
-      console.log(e.target.scrollTop,this.firstTop)
+      this.firstTop = this.$refs.comment.offsetTop;
+      this.secondTop = document.querySelector(".pics").offsetTop;
+      // console.log(e.target.scrollTop, this.firstTop, this.secondTop);
+      // console.log(typeof(this.scrollTop))
+      
     },
-    changetop(n){
-      this.scrollTop=n
+    changetop(n) {
+      this.scrollTop = n+1;
+      this.$refs.container.scrollTop=n+1
+      // console.log(n)
     },
     goCar() {
       this.$router.push({
@@ -927,6 +967,7 @@ footer {
 }
 .photo {
   position: relative;
+  width:100%;
 }
 .active {
   border-bottom: 2px solid rgb(255, 0, 54);
@@ -969,12 +1010,14 @@ footer {
 .title-fix .title-top-brand {
   display: flex;
   justify-content: space-between;
+  width:100%;
 }
 .title-fix {
   position: fixed;
   height: 5%;
   z-index: 5;
   padding: 0;
+  width: 100%;
 }
 .title {
   width: 100%;
@@ -994,8 +1037,10 @@ footer {
 .big .container .title-pho {
   padding: 0;
   margin: 0;
+  width: 100%;
+  height: 53%;
 }
-.container .bgshite{
+.container .bgshite {
   padding: 0;
 }
 .container {
