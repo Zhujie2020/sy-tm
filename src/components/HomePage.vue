@@ -251,7 +251,7 @@
       <div class="youLike">
         <p>猜你喜欢</p>
         <div class="youLike-bottom">
-          <div class="youLike-item" v-for="item in list" :key="item.id" @click="goDetail()">
+          <div class="youLike-item" v-for="item in list" :key="item.id" @click="goDetail(item.id)">
             <a href="javascript:void(0)" class="youLike-item-box">
               <span class="youLike-item-img">
                 <img :src="item.img" alt />
@@ -293,7 +293,6 @@ export default {
         pagination: {
           el: ".swiper-pagination",
         },
-        // Some Swiper option/callback...
         loop: true,
         autoplay: true,
       },
@@ -332,11 +331,11 @@ export default {
     goClassify() {
       this.$router.push("/classify");
     },
-    goDetail() {
+    goDetail(id) {
       this.$router.push({
         path:"/details",
         query:{
-          id:0
+          id:id
         }
       })
     },
