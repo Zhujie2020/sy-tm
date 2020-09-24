@@ -68,7 +68,7 @@
               <img :src="item" alt />
             </swiper-slide>
           </swiper>
-          <div class="swiper-pagination"></div>
+            <div class="swiper-pagination"></div>
         </div>
       </div>
       <!-- 价格 -->
@@ -1038,7 +1038,7 @@ footer {
   padding: 0;
   margin: 0;
   width: 100%;
-  height: 53%;
+  /* height: 53%; */
 }
 .container .bgshite {
   padding: 0;

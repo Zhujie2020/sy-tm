@@ -51,7 +51,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 .classify{
   width: 100%;
   height: 100%;
