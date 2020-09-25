@@ -6,6 +6,7 @@ import ShoppingCart from "../components/ShoppingCart.vue"
 import SearchDetail from "../components/searchDetail.vue"
 import Classify from "../components/Classify.vue"
 import SignIn from "../components/SignIn.vue"
+import Nothing from "../components/Nothing.vue"
 
 Vue.use(VueRouter)
 
@@ -36,6 +37,10 @@ const routes = [
     path:"/signin",
     component:SignIn
   },
+  {
+    path:"/nothing",
+    component:Nothing
+  }
 
 
 ]

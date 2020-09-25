@@ -5,13 +5,14 @@
         <div class="pic" @click="$router.go(-1)">
           <img src="../assets/左白.png" />
         </div>
-        <div class="pic" @click="goCar">
+        <div class="pic" @click="gotoCar">
           <img src="../assets/车白.png" />
         </div>
       </div>
     </div>
     <div class="container" v-if="list[id]" @scroll="scrollEvent" ref="container">
       <!-- else -->
+      <transition>
       <div class="title title-fix bgshite" v-if="bgwhite">
         <div class="title-top-brand title-top">
           <div class="pic" @click="$router.go(-1)">
@@ -51,6 +52,7 @@
           </div>
         </div>
       </div>
+      </transition>
       <!-- 轮播  -->
       <div class="title title-pho">
         <div class="photo">
@@ -379,7 +381,7 @@
         </div>
       </div>
       <div class="foot-right">
-        <div class="rob go-car" @click="goCar">加购物车</div>
+        <div class="rob go-car" @click="goCar(id)">加购物车</div>
         <div class="rob now">马上抢</div>
       </div>
     </footer>
@@ -442,10 +444,17 @@ export default {
       this.$refs.container.scrollTop=n+1
       // console.log(n)
     },
-    goCar() {
+    goCar(id) {
+      if(this.list[id].shop=="tm"){
+        this.$store.commit("addItem",this.list[id])
+      }else{
+         this.$store.commit("addTb",this.list[id])
+      }
+    },
+    gotoCar(){
       this.$router.push({
-        path: "/shoppingcart",
-      });
+        path:"shoppingcart",
+      })
     },
     time() {
       var that = this;
@@ -508,6 +517,13 @@ export default {
 </script>
 
 <style scoped>
+.v-enter,.v-leave-to{
+  opacity: 0;
+  height: 0;
+}
+.v-enter-active,.v-leave-active{
+transition: all 0.5s;
+}
 .rob {
   background: rgb(255, 149, 0);
   width: 100%;
@@ -574,12 +590,9 @@ footer {
   width: 100%;
   height: 100%;
 }
-.shop-pic {
-  width: 66px;
-  height: 66px;
-}
+
 .shop-every {
-  font-size: 18px;
+  font-size: 17px;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -1050,6 +1063,7 @@ footer {
   font-size: 14px;
   color: #333;
   overflow: auto;
+  width: 100%;
 }
 .big {
   height: 100%;

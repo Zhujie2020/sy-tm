@@ -4,18 +4,84 @@
       <div class="back" @click="$router.go(-1)">
         <img src="../assets/左灰.png" />
       </div>
-      <div class="car-title">购物车(<span>10</span>)</div>
+      <div class="car-title">
+        购物车(<span>{{ number }}</span
+        >)
+      </div>
     </header>
     <div class="container">
+      <!-- 天猫超市的 绿的 -->
       <div class="shop-item">
         <div class="foot-choose">
-          <!-- 左面 -->
           <div class="col col-left">
-            <!-- 圈 -->
-            <div class="choose-circle"></div>
-            <!-- 商店标 -->
+            <!-- 店铺全选-->
+            <div class="choose-circle" @click="borderBtn">
+              <img src="../assets/对号.png" alt="" />
+            </div>
             <div class="pic"><img src="../assets/cs.png" alt="" /></div>
-            <!-- 商店名 -->
+            <div class="shop">
+              <div>天猫超市店</div>
+              <div class="right-arrow">
+                <img src="../assets/箭头右.png" alt="" />
+              </div>
+            </div>
+          </div>
+          <div class="col coll">
+            <div>领券</div>
+            <div class="gray">|</div>
+            <div>编辑</div>
+          </div>
+        </div>
+        <div class="shop-bottom" v-for="(item, index) in getTm" :key="index">
+          <div class="col col-left">
+            <!-- 单选 -->
+            <div class="choose-circle" @click="changeBorder(index, 'tm')"   :class="{ 'no-border': item.checked }">
+              <img
+                src="../assets/对号.png"
+                alt=""
+              
+              />
+            </div>
+            <!-- 图片 -->
+            <div class="picture"><img :src="item.img" alt="" /></div>
+          </div>
+          <!-- 右面 -->
+          <div class="col-right">
+            <div class="col-right-top">{{ item.info }}</div>
+            <div class="col-right-mid">限购100件</div>
+            <div class="col-right-bottom">
+              <div>￥</div>
+              <dir class="price">{{ item.price }}</dir>
+              <div class="put">
+                <div>
+                  <img
+                    src="../assets/减号.png"
+                    alt=""
+                    @click="minus(index, 'tm')"
+                  />
+                </div>
+                <div><input type="text" :value="item.num" disabled /></div>
+                <div>
+                  <img
+                    src="../assets/加号.png"
+                    alt=""
+                    @click="add(index, 'tm')"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--红的 tm-->
+      <div class="shop-item">
+        <div class="foot-choose">
+          <div class="col col-left">
+            <!-- 店铺全选-->
+            <div class="choose-circle">
+              <img src="../assets/对号.png" alt="" />
+            </div>
+            <div class="pic"><img src="../assets/tm.png" alt="" /></div>
             <div class="shop">
               <div>正好旗舰店</div>
               <div class="right-arrow">
@@ -31,25 +97,43 @@
           </div>
         </div>
         <!-- 下面 -->
-        <div class="shop-bottom">
+        <div class="shop-bottom" v-for="(item, index) in getTb" :key="index">
           <!-- 左面 -->
-           <div class="col col-left">
-            <!-- 圈 -->
-            <div class="choose-circle"></div>
+          <div class="col col-left">
+            <!-- 单选 -->
+            <div class="choose-circle" @click="changeBorder(index, 'tb')" :class="{ 'no-border': item.checked }">
+              <img
+                src="../assets/对号.png"
+                alt=""
+                
+              />
+            </div>
             <!-- 图片 -->
-            <div  class="picture"><img :src="list[0].swiper[0]" alt=""></div>
+            <div class="picture"><img :src="item.img" alt="" /></div>
           </div>
           <!-- 右面 -->
           <div class="col-right">
-            <div class="col-right-top">{{list[0].info}}</div>
-            <div  class="col-right-mid">限购100件</div>
+            <div class="col-right-top">{{ item.info }}</div>
+            <div class="col-right-mid">限购100件</div>
             <div class="col-right-bottom">
               <div>￥</div>
-              <dir class="price">{{this.money}}</dir>
+              <dir class="price">{{ item.price }}</dir>
               <div class="put">
-                <div><img src="../assets/减号.png" alt=""></div>
-                <div><input type="text" v-model="mes"></div>
-                <div><img src="../assets/加号.png" alt=""></div>
+                <div>
+                  <img
+                    src="../assets/减号.png"
+                    alt=""
+                    @click="minus(index, 'tb')"
+                  />
+                </div>
+                <div><input type="text" :value="item.num" disabled /></div>
+                <div>
+                  <img
+                    src="../assets/加号.png"
+                    alt=""
+                    @click="add(index, 'tb')"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -60,7 +144,9 @@
       <div class="foot-top">
         <div class="foot-choose">
           <div class="col">
-            <div class="choose-circle"></div>
+            <div class="choose-circle">
+              <img src="../assets/对号.png" alt="" />
+            </div>
             <div>全选</div>
           </div>
           <div class="col coll">
@@ -76,7 +162,7 @@
       </div>
       <div class="foot-right">
         <div class="foot-every">
-          <a href="https://main.m.taobao.com/index.html" class="foot-a">
+          <a href="javascript:;" class="foot-a" @click="$router.push('/')">
             <div class="foot-pic">
               <img src="../assets/首页.png" alt />
             </div>
@@ -105,11 +191,8 @@
             <div class="foot-name">订单列表</div>
           </a>
         </div>
-        <div class="foot-every">
-          <a
-            href="https://main.m.taobao.com/mytaobao/index.html?spm=a212db.index.toolbar.i1"
-            class="foot-a"
-          >
+        <div class="foot-every" @click="goMe">
+          <a href="" class="foot-a">
             <div class="foot-pic">
               <img src="../assets/我.png" alt />
             </div>
@@ -133,14 +216,14 @@
 </template>
 
 <script>
-import axios from "axios"
-import store from "../store/index.js"
+import axios from "axios";
+import store from "../store/index.js";
 export default {
-  data(){
-    return{
-      list:[],
-      mes:0
-    }
+  data() {
+    return {
+      list: [],
+      noborder: false,
+    };
   },
   created() {
     let that = this;
@@ -154,59 +237,114 @@ export default {
       .catch(function (error) {
         console.log(error);
       });
+    console.log(this.number);
   },
-  computed:{
-    money(){
-      return this.$store.state.money
-    }
-  }
+  methods: {
+    goMe() {
+      this.router.push({
+        path: "/me",
+      });
+    },
+    borderBtn() {
+      this.noborder = !this.noborder;
+    },
+    minus(index, a) {
+      this.$store.commit("minus", {
+        index: index,
+        a: a,
+      });
+    },
+    add(index, a) {
+      this.$store.commit("add", {
+        index: index,
+        a: a,
+      });
+    },
+    changeBorder(index, a) {
+      this.$store.commit("changeBorder", {
+        index: index,
+        a: a,
+      });
+    },
+  },
+  computed: {
+    money() {
+      return this.$store.state.money;
+    },
+    id() {
+      return this.$route.query.id;
+    },
+    getTm() {
+      return this.$store.state.tm;
+    },
+    getTb() {
+      return this.$store.state.tb;
+    },
+    number() {
+      let mid = 0;
+      if (this.getTb.length) {
+        for (let i = 0; i < this.getTb.length; i++) {
+          mid += this.getTb[i].num;
+        }
+      }
+      if (this.getTm.length) {
+        for (let i = 0; i < this.getTm.length; i++) {
+          mid += this.getTm[i].num;
+        }
+      }
+      return mid;
+      // return this.getTb[0].num
+    },
+  },
 };
 </script>
 
 <style scoped>
-.col-right-bottom input{
+.no-border {
+  border: 0 !important;
+  background: rgb(255, 85, 0);
+}
+.col-right-bottom input {
   border: 0;
   text-align: center;
   color: #8a8a8a;
   font-size: 18px;
 }
-.price{
+.price {
   flex-grow: 1;
   font-size: 16px;
 }
-.put input{
+.put input {
   width: 50px;
 }
-.put{
+.put {
   display: flex;
   align-items: center;
 }
-.col-right-bottom{
-  /* color: #ff6700; */
+.col-right-bottom {
   display: flex;
   justify-content: space-between;
   color: #ff6700;
   align-items: center;
 }
-.col-right-mid{
+.col-right-mid {
   font-size: 13px;
   color: #ff6700;
 }
-.col-right{
+.col-right {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
-.shop-bottom{
-  padding: 10px 0;
-  /* background: red; */
+.shop-bottom {
+  padding: 10px 10px 10px 0;
   display: flex;
 }
-.picture{
-  width:80px;
+.picture {
+  width: 80px;
   height: 80px;
 }
-.picture img{
+.picture img {
   width: 100%;
   height: 100%;
 }
@@ -225,10 +363,9 @@ export default {
 .foot-choose img {
   width: 20px;
   height: 20px;
-  
 }
-.foot-choose{
-   border-bottom: 1px solid #e7e7e7;
+.foot-choose {
+  border-bottom: 1px solid #e7e7e7;
 }
 .container .col-left {
   padding: 0 15px;
@@ -236,13 +373,13 @@ export default {
 .shop-item .col {
   font-size: 14px;
 }
-.shop-item{
+.shop-item {
   background: #fff;
   margin-top: 10px;
 }
 .shop {
   display: flex;
-  margin:0 5px;
+  margin: 0 5px;
 }
 
 .yuan {
@@ -259,24 +396,28 @@ export default {
 .foot-choose .coll {
   justify-content: flex-end;
   align-items: center;
-  /* background-color: red; */
+  margin-right: 10px;
 }
 .col {
   display: flex;
-  /* justify-content: start; */
   align-items: center;
-  padding: 15px 0 8px 0;
+  padding: 15px 0 8px 15px;
   font-size: 16px;
-  /* background: rgb(247, 0, 255); */
 }
 .choose-circle {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  border: 2px solid #999;
+  border: 1px solid #8a8a8a;
   margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
+.choose-circle img {
+  width: 10px;
+  height: 10px;
+}
 .foot-choose {
   display: flex;
   justify-content: space-between;
@@ -295,7 +436,6 @@ export default {
   justify-content: space-between;
   background: #fff;
   border-bottom: 1px solid #ccc;
-  /* margin-bottom: 5px; */
 }
 .foot-a {
   text-decoration: none;
@@ -345,18 +485,15 @@ export default {
 }
 footer {
   flex-shrink: 0;
-  /* height: 6%; */
 }
 header {
   flex-shrink: 0;
   width: 100%;
-  /* height: 5%; */
   background: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  /* margin-bottom: 10px; */
 }
 
 .container {
