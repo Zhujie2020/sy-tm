@@ -7,6 +7,7 @@ import SearchDetail from "../components/searchDetail.vue"
 import Classify from "../components/Classify.vue"
 import SignIn from "../components/SignIn.vue"
 import Me from "../components/Me.vue"
+import Nothing from "../components/Nothing.vue"
 
 Vue.use(VueRouter)
 
@@ -40,7 +41,10 @@ const routes = [
   {
     path:"/me",
     component:Me
-  },
+  },{
+    path:"/nothing",
+    component:Nothing
+  }
 
 
 ]
