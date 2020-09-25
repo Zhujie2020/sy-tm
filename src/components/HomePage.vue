@@ -13,7 +13,7 @@
           </transition>
 
 
-          <span class="titleTop-login">登录</span>
+          <span class="titleTop-login" @click="goSignin">登录</span>
         </div>
       </div>
   <transition name="searchMove">
@@ -65,7 +65,7 @@
           />
           <p>聚划算</p>
         </a>
-        <a href class="iconList-item">
+        <a href="javascript:void(0);" class="iconList-item" @click="goClassify">
           <img
             src="//gw.alicdn.com/tfs/TB12CFXSFXXXXcpapXXXXXXXXXX-146-147.png_110x10000.jpg_.webp"
             alt
@@ -338,6 +338,9 @@ export default {
           id:id
         }
       })
+    },
+    goSignin(){
+      this.$router.push("/signin")
     },
 
     scrollEvent(e){

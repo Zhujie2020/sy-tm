@@ -17,17 +17,29 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
+
 import vecommend from "./classify/Vecommend.vue"
+import brand from "./classify/Branda.vue"
+import tmallInternate from "./classify/TmallInternational.vue"
+import wclothes from "./classify/WomenClothesa.vue"
+import wshose from "./classify/WomenShoes.vue"
 
 export default {
+  components:{
+        "vecommend":vecommend,
+        "brand":brand,
+        "tmall-internate":tmallInternate,
+        "wclothes":wclothes,
+        "wshose":wshose
+      },
   data(){
     return{
       pageName:"",
       num:0,
       list:["为您推荐","国际大牌","天猫国际","女装","女鞋","男装","男鞋","内衣","母婴","手机","数码","家电","美妆","家纺"],
-      rightPage:[] ,
-      comName:vecommend
+      rightPage:[],
+      comName:"vecommend"
     }
   },
   
@@ -35,6 +47,34 @@ export default {
     changePage(index){
       // console.log(index);
       this.num=index;
+      // if(index==0){
+      //   this.comName="vecommend"
+      // }else if (index==1) {
+      //    this.comName="brand"
+      // }
+      switch (index) {
+        case 0:
+        this.comName="vecommend"
+          break;
+
+          case 1:
+        this.comName="brand"
+          break;
+
+          case 2:
+        this.comName="tmall-internate"
+          break;
+
+          case 3:
+        this.comName="wclothes"
+          break;
+
+          case 4:
+        this.comName="wshose"
+          break;
+
+        
+      }
       // console.log(this.num);
     }
   },
