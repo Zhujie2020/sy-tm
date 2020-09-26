@@ -5,24 +5,26 @@
         <img src="../assets/左灰.png" />
       </div>
       <div class="car-title">
-        购物车(<span>{{ number }}</span
-        >)
+        购物车(
+        <span>{{ number }}</span>)
       </div>
     </header>
     <div class="container">
-      <!-- 天猫超市的 绿的 -->
+      <!-- 天猫超市的 绿的tm -->
       <div class="shop-item">
         <div class="foot-choose">
           <div class="col col-left">
             <!-- 店铺全选-->
             <div class="choose-circle" @click="borderBtn">
-              <img src="../assets/对号.png" alt="" />
+              <img src="../assets/对号.png" alt />
             </div>
-            <div class="pic"><img src="../assets/cs.png" alt="" /></div>
+            <div class="pic">
+              <img src="../assets/cs.png" alt />
+            </div>
             <div class="shop">
               <div>天猫超市店</div>
               <div class="right-arrow">
-                <img src="../assets/箭头右.png" alt="" />
+                <img src="../assets/箭头右.png" alt />
               </div>
             </div>
           </div>
@@ -33,59 +35,66 @@
           </div>
         </div>
         <div class="shop-bottom" v-for="(item, index) in getTm" :key="index">
-          <div class="col col-left">
-            <!-- 单选 -->
-            <div class="choose-circle" @click="changeBorder(index, 'tm')"   :class="{ 'no-border': item.checked }">
-              <img
-                src="../assets/对号.png"
-                alt=""
-              
-              />
+          <div
+            class="shopp"
+            @touchmove="move(index,'tm')"
+            @touchstart="start(index,'tm')"
+            @touchend="over(index,'tm')"
+            :style="{transform:'translateX('+item.x+'px)'}"
+          >
+            <div class="col col-left">
+              <!-- 单选 -->
+              <div
+                class="choose-circle"
+                @click="changeBorder(index, 'tm')"
+                :class="{ 'no-border': item.checked }"
+              >
+                <img src="../assets/对号.png" alt />
+              </div>
+              <!-- 图片 -->
+              <div class="picture">
+                <img :src="item.img" alt />
+              </div>
             </div>
-            <!-- 图片 -->
-            <div class="picture"><img :src="item.img" alt="" /></div>
-          </div>
-          <!-- 右面 -->
-          <div class="col-right">
-            <div class="col-right-top">{{ item.info }}</div>
-            <div class="col-right-mid">限购100件</div>
-            <div class="col-right-bottom">
-              <div>￥</div>
-              <dir class="price">{{ item.price }}</dir>
-              <div class="put">
-                <div>
-                  <img
-                    src="../assets/减号.png"
-                    alt=""
-                    @click="minus(index, 'tm')"
-                  />
-                </div>
-                <div><input type="text" :value="item.num" disabled /></div>
-                <div>
-                  <img
-                    src="../assets/加号.png"
-                    alt=""
-                    @click="add(index, 'tm')"
-                  />
+            <!-- 右面 -->
+            <div class="col-right">
+              <div class="col-right-top">{{ item.info }}</div>
+              <div class="col-right-mid">限购100件</div>
+              <div class="col-right-bottom">
+                <div>￥</div>
+                <dir class="price">{{ item.price }}</dir>
+                <div class="put">
+                  <div>
+                    <img src="../assets/减号.png" alt @click="minus(index, 'tm')" />
+                  </div>
+                  <div>
+                    <input type="text" :value="item.num" disabled />
+                  </div>
+                  <div>
+                    <img src="../assets/加号.png" alt @click="add(index, 'tm')" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <div class="delete" @click="del(index,'tm')">删除</div>
         </div>
       </div>
-      <!--红的 tm-->
+      <!--红的 tb-->
       <div class="shop-item">
         <div class="foot-choose">
           <div class="col col-left">
             <!-- 店铺全选-->
             <div class="choose-circle">
-              <img src="../assets/对号.png" alt="" />
+              <img src="../assets/对号.png" alt />
             </div>
-            <div class="pic"><img src="../assets/tm.png" alt="" /></div>
+            <div class="pic">
+              <img src="../assets/tm.png" alt />
+            </div>
             <div class="shop">
               <div>正好旗舰店</div>
               <div class="right-arrow">
-                <img src="../assets/箭头右.png" alt="" />
+                <img src="../assets/箭头右.png" alt />
               </div>
             </div>
           </div>
@@ -99,44 +108,49 @@
         <!-- 下面 -->
         <div class="shop-bottom" v-for="(item, index) in getTb" :key="index">
           <!-- 左面 -->
-          <div class="col col-left">
-            <!-- 单选 -->
-            <div class="choose-circle" @click="changeBorder(index, 'tb')" :class="{ 'no-border': item.checked }">
-              <img
-                src="../assets/对号.png"
-                alt=""
-                
-              />
+           <div
+            class="shopp"
+            @touchmove="move(index,'tb')"
+            @touchstart="start(index,'tb')"
+            @touchend="over(index,'tb')"
+            :style="{transform:'translateX('+item.x+'px)'}"
+          >
+            <div class="col col-left">
+              <!-- 单选 -->
+              <div
+                class="choose-circle"
+                @click="changeBorder(index, 'tb')"
+                :class="{ 'no-border': item.checked }"
+              >
+                <img src="../assets/对号.png" alt />
+              </div>
+              <!-- 图片 -->
+              <div class="picture">
+                <img :src="item.img" alt />
+              </div>
             </div>
-            <!-- 图片 -->
-            <div class="picture"><img :src="item.img" alt="" /></div>
-          </div>
-          <!-- 右面 -->
-          <div class="col-right">
-            <div class="col-right-top">{{ item.info }}</div>
-            <div class="col-right-mid">限购100件</div>
-            <div class="col-right-bottom">
-              <div>￥</div>
-              <dir class="price">{{ item.price }}</dir>
-              <div class="put">
-                <div>
-                  <img
-                    src="../assets/减号.png"
-                    alt=""
-                    @click="minus(index, 'tb')"
-                  />
-                </div>
-                <div><input type="text" :value="item.num" disabled /></div>
-                <div>
-                  <img
-                    src="../assets/加号.png"
-                    alt=""
-                    @click="add(index, 'tb')"
-                  />
+            <!-- 右面 -->
+            <div class="col-right">
+              <div class="col-right-top">{{ item.info }}</div>
+              <div class="col-right-mid">限购100件</div>
+              <div class="col-right-bottom">
+                <div>￥</div>
+                <dir class="price">{{ item.price }}</dir>
+                <div class="put">
+                  <div>
+                    <img src="../assets/减号.png" alt @click="minus(index, 'tb')" />
+                  </div>
+                  <div>
+                    <input type="text" :value="item.num" disabled />
+                  </div>
+                  <div>
+                    <img src="../assets/加号.png" alt @click="add(index, 'tb')" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <div class="delete" @click="del(index,'tb')">删除</div>
         </div>
       </div>
     </div>
@@ -145,19 +159,24 @@
         <div class="foot-choose">
           <div class="col">
             <div class="choose-circle">
-              <img src="../assets/对号.png" alt="" />
+              <img src="../assets/对号.png" alt />
             </div>
             <div>全选</div>
           </div>
           <div class="col coll">
             <div class="col-money">合计:</div>
             <div class="money">
-              ￥<span class="yuan">0.</span><span class="jiao">00</span>
+              ￥
+              <span class="yuan">0.</span>
+              <span class="jiao">00</span>
             </div>
           </div>
         </div>
         <div class="foot-count">
-          <div>结算(<span>0</span>)</div>
+          <div>
+            结算(
+            <span>0</span>)
+          </div>
         </div>
       </div>
       <div class="foot-right">
@@ -192,7 +211,7 @@
           </a>
         </div>
         <div class="foot-every" @click="goMe">
-          <a href="" class="foot-a">
+          <a href class="foot-a">
             <div class="foot-pic">
               <img src="../assets/我.png" alt />
             </div>
@@ -217,12 +236,14 @@
 
 <script>
 import axios from "axios";
-import store from "../store/index.js";
 export default {
   data() {
     return {
       list: [],
       noborder: false,
+      begin: 0,
+      mid: 0,
+      x: 0
     };
   },
   created() {
@@ -230,11 +251,11 @@ export default {
     let url = "http://127.0.0.1:5500/src/data/detail.json";
     axios
       .get(url)
-      .then(function (response) {
+      .then(function(response) {
         that.list = response.data.response;
         console.log(that.list);
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
       });
     console.log(this.number);
@@ -242,7 +263,7 @@ export default {
   methods: {
     goMe() {
       this.router.push({
-        path: "/me",
+        path: "/me"
       });
     },
     borderBtn() {
@@ -251,21 +272,58 @@ export default {
     minus(index, a) {
       this.$store.commit("minus", {
         index: index,
-        a: a,
+        a: a
       });
     },
     add(index, a) {
       this.$store.commit("add", {
         index: index,
-        a: a,
+        a: a
       });
     },
     changeBorder(index, a) {
       this.$store.commit("changeBorder", {
         index: index,
-        a: a,
+        a: a
       });
     },
+    move(index,a) {
+      if(a=='tm'){
+        this.$store.state.tm[index].mid = event.changedTouches[0].clientX;
+        this.$store.state.tm[index].x = this.getTm[index].mid - this.getTm[index].begin;
+      }else{
+        this.$store.state.tb[index].mid = event.changedTouches[0].clientX;
+        this.$store.state.tb[index].x = this.getTb[index].mid - this.getTb[index].begin;
+      }
+    },
+    start(index,a) {
+      if(a=='tm'){
+        this.$store.state.tm[index].begin = event.changedTouches[0].clientX;
+      }else{
+        this.$store.state.tb[index].begin = event.changedTouches[0].clientX;
+      }
+    },
+    over(index,a) {
+      if(a=="tm"){
+        if (this.getTm[index].x <= -50) {
+          this.$store.state.tm[index].x = -68;
+        } else {
+          this.getTm[index].x = 0;
+        }
+      }else{
+         if (this.getTb[index].x <= -50) {
+          this.$store.state.tb[index].x = -68;
+        } else {
+          this.getTb[index].x = 0;
+        }
+      }
+    },
+    del(index,a){
+     this.$store.commit("delItem",{
+       index:index,
+       a:a
+     })
+    }
   },
   computed: {
     money() {
@@ -294,12 +352,22 @@ export default {
       }
       return mid;
       // return this.getTb[0].num
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style scoped>
+
+.delete {
+  position: absolute;
+  background: #ff6700;
+  color: #fff;
+  right:0;
+  width:68px;
+  height: 100%;
+  line-height: 100%;
+  }
 .no-border {
   border: 0 !important;
   background: rgb(255, 85, 0);
@@ -337,8 +405,17 @@ export default {
   justify-content: space-around;
 }
 .shop-bottom {
-  padding: 10px 10px 10px 0;
+  /* padding: 10px 10px 10px 0; */
   display: flex;
+ position: relative;
+  margin:10px 0;
+
+}
+.container .shopp{
+   display: flex;
+  width: 100%;
+  background-color: #fff;
+  z-index: 2;
 }
 .picture {
   width: 80px;

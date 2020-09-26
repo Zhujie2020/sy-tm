@@ -25,7 +25,9 @@ export default new Vuex.Store({
           img: newVal.swiper[0],
           info: newVal.info,
           id:newVal.id,
-          checked:false
+          checked:false, begin: 0,
+          mid: 0,
+          x: 0
         })
       }
     },
@@ -45,7 +47,10 @@ export default new Vuex.Store({
           img: newVal.swiper[0],
           info: newVal.info,
           id:newVal.id,
-          checked:false
+          checked:false,
+          begin: 0,
+          mid: 0,
+          x: 0
         })
       }
     },
@@ -73,6 +78,13 @@ export default new Vuex.Store({
           state.tb[obj.index].checked=!state.tb[obj.index].checked;
       }else{
         state.tm[obj.index].checked=!state.tm[obj.index].checked;
+      }
+    },
+    delItem(state,obj){
+      if(obj.a=='tm'){
+        state.tm.splice(obj.index,1)
+      }else{
+        state.tb.splice(obj.index,1)
       }
     }
   }

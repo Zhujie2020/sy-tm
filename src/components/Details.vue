@@ -47,7 +47,7 @@
               详情
             </div>
           </div>
-          <div class="pic">
+          <div class="pic" @click="gotoCar">
             <img src="../assets/车灰.png" />
           </div>
         </div>
