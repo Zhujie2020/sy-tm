@@ -10,48 +10,51 @@
         </div>
       </div>
     </div>
-    <div class="container" v-if="list[id]" @scroll="scrollEvent" ref="container">
+    <div
+      class="container"
+      v-if="list[id]"
+      @scroll="scrollEvent"
+      ref="container"
+    >
       <!-- else -->
       <transition>
-      <div class="title title-fix bgshite" v-if="bgwhite">
-        <div class="title-top-brand title-top">
-          <div class="pic" @click="$router.go(-1)">
-            <img src="../assets/左灰.png" />
-          </div>
-          <div class="three">
-            <div
-              :class="{
-                active: scrolltop > 0 && scrolltop <= firstTop,
-              }"
-              @click="changetop(0)"
-              @scroll="scrollEvent"
-            >
-              商品
+        <div class="title title-fix bgshite" v-if="bgwhite">
+          <div class="title-top-brand title-top">
+            <div class="pic" @click="$router.go(-1)">
+              <img src="../assets/左灰.png" />
             </div>
-            <div
-              :class="{
-                active:
-                  scrolltop > firstTop &&
-                  scrolltop <= secondTop,
-              }"
-              @click="changetop(firstTop)"
-              @scroll="scrollEvent"
-            >
-              评价
+            <div class="three">
+              <div
+                :class="{
+                  active: scrolltop > 0 && scrolltop <= firstTop,
+                }"
+                @click="changetop(0)"
+                @scroll="scrollEvent"
+              >
+                商品
+              </div>
+              <div
+                :class="{
+                  active: scrolltop > firstTop && scrolltop <= secondTop,
+                }"
+                @click="changetop(firstTop)"
+                @scroll="scrollEvent"
+              >
+                评价
+              </div>
+              <div
+                :class="{ active: scrolltop > secondTop }"
+                @click="changetop(secondTop)"
+                @scroll="scrollEvent"
+              >
+                详情
+              </div>
             </div>
-            <div
-              :class="{ active: scrolltop > secondTop }"
-              @click="changetop(secondTop)"
-              @scroll="scrollEvent"
-            >
-              详情
+            <div class="pic" @click="gotoCar">
+              <img src="../assets/车灰.png" />
             </div>
-          </div>
-          <div class="pic" @click="gotoCar">
-            <img src="../assets/车灰.png" />
           </div>
         </div>
-      </div>
       </transition>
       <!-- 轮播  -->
       <div class="title title-pho">
@@ -70,7 +73,7 @@
               <img :src="item" alt />
             </swiper-slide>
           </swiper>
-            <div class="swiper-pagination"></div>
+          <div class="swiper-pagination"></div>
         </div>
       </div>
       <!-- 价格 -->
@@ -198,7 +201,7 @@
             <div class="arrow-right comment-right">
               <div class="all">打开APP查看全部</div>
               <img src="../assets/右粉.png" alt />
-            </div>
+            </div>  
           </div>
           <div class="ask">
             <div class="ask-one">
@@ -395,6 +398,7 @@ export default {
   data() {
     return {
       list: [],
+      // seeComment: true,
       hou: 0,
       min: 0,
       sec: 0,
@@ -437,24 +441,29 @@ export default {
       this.secondTop = document.querySelector(".pics").offsetTop;
       // console.log(e.target.scrollTop, this.firstTop, this.secondTop);
       // console.log(typeof(this.scrollTop))
-      
     },
     changetop(n) {
-      this.scrollTop = n+1;
-      this.$refs.container.scrollTop=n+1
+      this.scrollTop = n + 1;
+      this.$refs.container.scrollTop = n + 1;
       // console.log(n)
     },
     goCar(id) {
-      if(this.list[id].shop=="tm"){
-        this.$store.commit("addItem",this.list[id])
-      }else{
-         this.$store.commit("addTb",this.list[id])
+      if (this.list[id].shop == "tm") {
+        this.$store.commit("addItem", this.list[id]);
+      } else {
+        this.$store.commit("addTb", this.list[id]);
       }
     },
-    gotoCar(){
+    seeAll() {
+      // this.seeComment = !this.seeComment;
       this.$router.push({
-        path:"shoppingcart",
+        path:"/co"
       })
+    },
+    gotoCar() {
+      this.$router.push({
+        path: "shoppingcart",
+      });
     },
     time() {
       var that = this;
@@ -512,17 +521,20 @@ export default {
     id() {
       return this.$route.query.id;
     },
-  }
+  },
 };
 </script>
 
 <style scoped>
-.v-enter,.v-leave-to{
+
+.v-enter,
+.v-leave-to {
   opacity: 0;
   height: 0;
 }
-.v-enter-active,.v-leave-active{
-transition: all 0.5s;
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.5s;
 }
 .rob {
   background: rgb(255, 149, 0);
@@ -980,7 +992,7 @@ footer {
 }
 .photo {
   position: relative;
-  width:100%;
+  width: 100%;
 }
 .active {
   border-bottom: 2px solid rgb(255, 0, 54);
@@ -1023,7 +1035,7 @@ footer {
 .title-fix .title-top-brand {
   display: flex;
   justify-content: space-between;
-  width:100%;
+  width: 100%;
 }
 .title-fix {
   position: fixed;
@@ -1057,6 +1069,7 @@ footer {
   padding: 0;
 }
 .container {
+  
   display: flex;
   flex-direction: column;
   background: rgb(250, 250, 250);
@@ -1070,5 +1083,6 @@ footer {
   width: 100%;
   display: flex;
   flex-direction: column;
+
 }
 </style>

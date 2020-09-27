@@ -6,16 +6,17 @@
       </div>
       <div class="car-title">
         购物车(
-        <span>{{ number }}</span>)
+        <span>{{ number }}</span
+        >)
       </div>
     </header>
     <div class="container">
       <!-- 天猫超市的 绿的tm -->
-      <div class="shop-item">
+      <div class="shop-item" v-if="getTm.length">
         <div class="foot-choose">
           <div class="col col-left">
             <!-- 店铺全选-->
-            <div class="choose-circle" @click="borderBtn">
+            <div class="choose-circle" @click="borderBtn('tm')" :class="{ 'no-border': $store.state.check1 }">
               <img src="../assets/对号.png" alt />
             </div>
             <div class="pic">
@@ -31,16 +32,18 @@
           <div class="col coll">
             <div>领券</div>
             <div class="gray">|</div>
-            <div>编辑</div>
+            <div v-if="cut1" @click="changeCut('tm')">编辑</div>
+            <div v-else @click="changeCut('tm')">完成</div>
           </div>
         </div>
         <div class="shop-bottom" v-for="(item, index) in getTm" :key="index">
+         <transition name="cutout">
           <div
             class="shopp"
-            @touchmove="move(index,'tm')"
-            @touchstart="start(index,'tm')"
-            @touchend="over(index,'tm')"
-            :style="{transform:'translateX('+item.x+'px)'}"
+            @touchmove="move(index, 'tm')"
+            @touchstart="start(index, 'tm')"
+            @touchend="over(index, 'tm')"
+            :style="{ transform: 'translateX(' + item.x + 'px)' }"
           >
             <div class="col col-left">
               <!-- 单选 -->
@@ -61,31 +64,41 @@
               <div class="col-right-top">{{ item.info }}</div>
               <div class="col-right-mid">限购100件</div>
               <div class="col-right-bottom">
-                <div>￥</div>
+                <div class="rmb">￥</div>
                 <dir class="price">{{ item.price }}</dir>
                 <div class="put">
                   <div>
-                    <img src="../assets/减号.png" alt @click="minus(index, 'tm')" />
+                    <img
+                      src="../assets/减号.png"
+                      alt
+                      @click="minus(index, 'tm', item.num)"
+                    />
                   </div>
                   <div>
                     <input type="text" :value="item.num" disabled />
                   </div>
                   <div>
-                    <img src="../assets/加号.png" alt @click="add(index, 'tm')" />
+                    <img
+                      src="../assets/加号.png"
+                      alt
+                      @click="add(index, 'tm')"
+                    />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="delete" @click="del(index,'tm')">删除</div>
+          </transition>
+          
+            <div class="delete" @click="confirms(index, 'tm')">删除</div>
         </div>
       </div>
       <!--红的 tb-->
-      <div class="shop-item">
+      <div class="shop-item" v-if="getTb.length">
         <div class="foot-choose">
           <div class="col col-left">
             <!-- 店铺全选-->
-            <div class="choose-circle">
+            <div class="choose-circle" @click="borderBtn('tb')" :class="{ 'no-border':$store.state.check2 }">
               <img src="../assets/对号.png" alt />
             </div>
             <div class="pic">
@@ -102,18 +115,20 @@
           <div class="col coll">
             <div>领券</div>
             <div class="gray">|</div>
-            <div>编辑</div>
+            <div v-if="cut2" @click="changeCut('tb')">编辑</div>
+            <div v-else @click="changeCut('tb')">完成</div>
           </div>
         </div>
         <!-- 下面 -->
         <div class="shop-bottom" v-for="(item, index) in getTb" :key="index">
           <!-- 左面 -->
-           <div
+          <transition name="cutout">
+          <div
             class="shopp"
-            @touchmove="move(index,'tb')"
-            @touchstart="start(index,'tb')"
-            @touchend="over(index,'tb')"
-            :style="{transform:'translateX('+item.x+'px)'}"
+            @touchmove="move(index, 'tb')"
+            @touchstart="start(index, 'tb')"
+            @touchend="over(index, 'tb')"
+            :style="{ transform: 'translateX(' + item.x + 'px)' }"
           >
             <div class="col col-left">
               <!-- 单选 -->
@@ -129,28 +144,39 @@
                 <img :src="item.img" alt />
               </div>
             </div>
+            
             <!-- 右面 -->
             <div class="col-right">
               <div class="col-right-top">{{ item.info }}</div>
               <div class="col-right-mid">限购100件</div>
               <div class="col-right-bottom">
-                <div>￥</div>
+                <div class="rmb">￥</div>
                 <dir class="price">{{ item.price }}</dir>
                 <div class="put">
                   <div>
-                    <img src="../assets/减号.png" alt @click="minus(index, 'tb')" />
+                    <img
+                      src="../assets/减号.png"
+                      alt
+                      @click="minus(index, 'tb', item.num)"
+                    />
                   </div>
                   <div>
                     <input type="text" :value="item.num" disabled />
                   </div>
                   <div>
-                    <img src="../assets/加号.png" alt @click="add(index, 'tb')" />
+                    <img
+                      src="../assets/加号.png"
+                      alt
+                      @click="add(index, 'tb')"
+                    />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="delete" @click="del(index,'tb')">删除</div>
+          </transition>
+            <div class="delete" @click="confirms(index, 'tb')">删除</div>
+          
         </div>
       </div>
     </div>
@@ -158,7 +184,11 @@
       <div class="foot-top">
         <div class="foot-choose">
           <div class="col">
-            <div class="choose-circle">
+            <div
+              class="choose-circle"
+              @click="selectAll"
+              :class="[check ? 'no-border' : '']"
+            >
               <img src="../assets/对号.png" alt />
             </div>
             <div>全选</div>
@@ -167,8 +197,8 @@
             <div class="col-money">合计:</div>
             <div class="money">
               ￥
-              <span class="yuan">0.</span>
-              <span class="jiao">00</span>
+              <span class="yuan">{{ countMoney }}</span>
+              <span class="jiao"></span>
             </div>
           </div>
         </div>
@@ -231,6 +261,22 @@
         </div>
       </div>
     </footer>
+    <!-- 减号 -->
+    <transition>
+      <div class="tips" v-if="tip">
+        <div class="nomore">受不了了,宝贝不能再少了哦~</div>
+      </div>
+    </transition>
+    <!-- 删除 -->
+    <div class="tips" v-if="confirm">
+      <div class="confirm-box">
+        <div class="are-you-sure">确定要删除这个宝贝吗?</div>
+        <div class="confirm-bottom">
+          <div class="no" @click="cancel">取消</div>
+          <div class="yes" @click="del">确定</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -241,9 +287,15 @@ export default {
     return {
       list: [],
       noborder: false,
-      begin: 0,
-      mid: 0,
-      x: 0
+
+      tip: false,
+      confirm: false,
+      index: "",
+      shop: "",
+      cut1: true,
+      cut2: true,
+      check:false,
+
     };
   },
   created() {
@@ -251,81 +303,181 @@ export default {
     let url = "http://127.0.0.1:5500/src/data/detail.json";
     axios
       .get(url)
-      .then(function(response) {
+      .then(function (response) {
         that.list = response.data.response;
-        console.log(that.list);
+        // console.log(that.list);
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
-    console.log(this.number);
+    // console.log(this.number);
   },
   methods: {
     goMe() {
       this.router.push({
-        path: "/me"
+        path: "/me",
       });
     },
-    borderBtn() {
-      this.noborder = !this.noborder;
+    // 商铺的全选
+    borderBtn(a) {
+      if (a == "tm") {
+        this.$store.state.check1 = !this.$store.state.check1;
+        this.$store.commit("borderBtn", {
+          a: a,
+          check: this.$store.state.check1,
+        });
+      } else {
+        this.$store.state.check2 = !this.$store.state.check2;
+        this.$store.commit("borderBtn", {
+          a: a,
+          check: this.$store.state.check2,
+        });
+      }
     },
-    minus(index, a) {
+    minus(index, a, num) {
+      if (num == 1) {
+        this.tip = true;
+        setTimeout(() => {
+          this.tip = false;
+        }, 1000);
+      }
       this.$store.commit("minus", {
         index: index,
-        a: a
+        a: a,
       });
     },
     add(index, a) {
       this.$store.commit("add", {
         index: index,
-        a: a
+        a: a,
       });
     },
     changeBorder(index, a) {
       this.$store.commit("changeBorder", {
         index: index,
-        a: a
+        a: a,
       });
-    },
-    move(index,a) {
       if(a=='tm'){
-        this.$store.state.tm[index].mid = event.changedTouches[0].clientX;
-        this.$store.state.tm[index].x = this.getTm[index].mid - this.getTm[index].begin;
+        let flag = true;
+        for(let i = 0; i < this.getTm.length; i++){
+          if(this.getTm[i].checked==false){
+            flag= false;
+            break
+          }
+        }
+        if(flag){
+          this.$store.state.check1=true
+        }else{
+          this.$store.state.check1= false
+        }
+
       }else{
-        this.$store.state.tb[index].mid = event.changedTouches[0].clientX;
-        this.$store.state.tb[index].x = this.getTb[index].mid - this.getTb[index].begin;
+        let flag = true;
+        for(let i = 0; i < this.getTb.length; i++){
+          if(this.getTb[i].checked==false){
+            flag= false;
+            break
+          }
+        }
+        if(flag){
+          this.$store.state.check2=true
+        }else{
+          this.$store.state.check2= false
+        }
       }
     },
-    start(index,a) {
-      if(a=='tm'){
+    move(index, a) {
+      if (a == "tm") {
+        this.$store.state.tm[index].mid = event.changedTouches[0].clientX;
+        this.$store.state.tm[index].x =
+          this.getTm[index].mid - this.getTm[index].begin;
+      } else {
+        this.$store.state.tb[index].mid = event.changedTouches[0].clientX;
+        this.$store.state.tb[index].x =
+          this.getTb[index].mid - this.getTb[index].begin;
+      }
+    },
+    start(index, a) {
+      if (a == "tm") {
         this.$store.state.tm[index].begin = event.changedTouches[0].clientX;
-      }else{
+      } else {
         this.$store.state.tb[index].begin = event.changedTouches[0].clientX;
       }
     },
-    over(index,a) {
-      if(a=="tm"){
+    over(index, a) {
+      if (a == "tm") {
         if (this.getTm[index].x <= -50) {
           this.$store.state.tm[index].x = -68;
         } else {
           this.getTm[index].x = 0;
         }
-      }else{
-         if (this.getTb[index].x <= -50) {
+      } else {
+        if (this.getTb[index].x <= -50) {
           this.$store.state.tb[index].x = -68;
         } else {
           this.getTb[index].x = 0;
         }
       }
     },
-    del(index,a){
-     this.$store.commit("delItem",{
-       index:index,
-       a:a
-     })
+    // 删除按钮
+    del() {
+      this.$store.commit("delItem", {
+        index: this.index,
+        a: this.shop,
+      });
+      this.confirm = false;
+    },
+    // 取消
+    cancel() {
+      this.confirm = false;
+    },
+    // 确认删除
+    confirms(index, a) {
+      this.confirm = true;
+      this.index = index;
+      this.shop = a;
+    },
+    // 编辑
+    changeCut(a) {
+      if (a == "tm") {
+        this.cut1 = !this.cut1;
+        this.$store.commit("changeCut", {
+          a: a,
+          cut: this.cut1,
+        });
+      } else {
+        this.cut2 = !this.cut2;
+        this.$store.commit("changeCut", {
+          a: a,
+          cut: this.cut2,
+        });
+      }
+    },
+    // 全选
+    selectAll() {
+      this.check = !this.check;
+      this.$store.commit("selectAll");
+    },
+  },
+  watch:{
+    shopLength(newVal){
+      if(newVal==0){
+        this.$router.push({
+          path:"/nothing"
+        })
+      }
+    },
+    check1(newVal){
+      if(check1){
+        this.check1=newVal
+      }
     }
   },
   computed: {
+    shopLength(){
+      return this.getTm.length+this.getTb.length
+    },
+
     money() {
       return this.$store.state.money;
     },
@@ -352,22 +504,109 @@ export default {
       }
       return mid;
       // return this.getTb[0].num
-    }
-  }
+    },
+    countMoney() {
+      let parseI = 0;
+      let parseF = 0;
+      let price = 0;
+      if (this.getTb.length) {
+        for (let i = 0; i < this.getTb.length; i++) {
+          if (this.getTb[i].checked) {
+            price += this.getTb[i].num * this.getTb[i].price;
+          }
+        }
+      }
+      if (this.getTm.length) {
+        for (let i = 0; i < this.getTm.length; i++) {
+          if (this.getTm[i].checked) {
+            price += this.getTm[i].num * this.getTm[i].price;
+          }
+        }
+      }
+      return price;
+    },
+   check1(){
+     return this.$store.state.check1
+   },
+    check2(){
+     return this.$store.state.check2
+   }
+  },
 };
+
 </script>
 
 <style scoped>
-
+.cutout-enter {
+  width: 68px;
+}
+.cutout-enter-active {
+  transition: width 1s;
+}
+.are-you-sure {
+  padding: 10px 50px;
+  font-size: 14px;
+}
+.confirm-bottom div {
+  text-align: center;
+  color: #999;
+  font-weight: 600;
+}
+.confirm-bottom {
+  display: flex;
+  padding-bottom: 10px;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+.confirm-box {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  color: #333;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+}
+.v-leave-to,
+.v-enter {
+  opacity: 0;
+  height: 0;
+}
+.v-leave-active,
+.v-enter-active {
+  transition: all 2s;
+}
+.nomore {
+  background: #333;
+  padding: 10px;
+  border-radius: 10px;
+}
+.tips {
+  position: absolute;
+  top: 0;
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  z-index: 10;
+}
+.rmb {
+  flex-shrink: 0;
+}
 .delete {
   position: absolute;
   background: #ff6700;
   color: #fff;
-  right:0;
-  width:68px;
+  right: 0;
+  width: 68px;
   height: 100%;
-  line-height: 100%;
-  }
+  line-height: 5;
+  text-align: center;
+}
 .no-border {
   border: 0 !important;
   background: rgb(255, 85, 0);
@@ -388,6 +627,8 @@ export default {
 .put {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
+  margin-right: 10px;
 }
 .col-right-bottom {
   display: flex;
@@ -403,19 +644,20 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  flex-grow: 1;
 }
 .shop-bottom {
   /* padding: 10px 10px 10px 0; */
   display: flex;
- position: relative;
-  margin:10px 0;
-
+  position: relative;
+  margin: 10px 0;
 }
-.container .shopp{
-   display: flex;
+.container .shopp {
+  display: flex;
   width: 100%;
   background-color: #fff;
   z-index: 2;
+  transition-duration: 0.5s;
 }
 .picture {
   width: 80px;
@@ -587,6 +829,7 @@ a {
   text-decoration: none;
 }
 .big {
+  position: relative;
   height: 100%;
   width: 100%;
   display: flex;

@@ -50,7 +50,7 @@ export default {
     confirm(){
       if(this.name=="divdage"&&this.password=="666666"){
         this.$router.push({
-          path:"/shoppingcart"
+          path:"/nothing"
         })
       }else{
         this.isShow =!this.isShow

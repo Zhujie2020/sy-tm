@@ -8,7 +8,7 @@ import Classify from "../components/Classify.vue"
 import SignIn from "../components/SignIn.vue"
 import Me from "../components/Me.vue"
 import Nothing from "../components/Nothing.vue"
-
+import Hide from "../components/Hide.vue"
 Vue.use(VueRouter)
 
 const routes = [
@@ -44,6 +44,10 @@ const routes = [
   },{
     path:"/nothing",
     component:Nothing
+  },
+  {
+    path:"/co",
+    component:Hide
   }
 
 
