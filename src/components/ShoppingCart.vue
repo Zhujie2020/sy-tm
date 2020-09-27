@@ -187,7 +187,7 @@
             <div
               class="choose-circle"
               @click="selectAll"
-              :class="[check ? 'no-border' : '']"
+              :class="[checkAll ? 'no-border' : '']"
             >
               <img src="../assets/对号.png" alt />
             </div>
@@ -205,7 +205,7 @@
         <div class="foot-count">
           <div>
             结算(
-            <span>0</span>)
+            <span>{{countNum}}</span>)
           </div>
         </div>
       </div>
@@ -287,7 +287,6 @@ export default {
     return {
       list: [],
       noborder: false,
-
       tip: false,
       confirm: false,
       index: "",
@@ -333,6 +332,7 @@ export default {
           check: this.$store.state.check2,
         });
       }
+      this.$store.commit("count")
     },
     minus(index, a, num) {
       if (num == 1) {
@@ -385,6 +385,7 @@ export default {
           this.$store.state.check2= false
         }
       }
+       this.$store.commit("count")
     },
     move(index, a) {
       if (a == "tm") {
@@ -455,7 +456,6 @@ export default {
     },
     // 全选
     selectAll() {
-      this.check = !this.check;
       this.$store.commit("selectAll");
     },
   },
@@ -466,18 +466,15 @@ export default {
           path:"/nothing"
         })
       }
-    },
-    check1(newVal){
-      if(check1){
-        this.check1=newVal
-      }
     }
   },
   computed: {
     shopLength(){
       return this.getTm.length+this.getTb.length
     },
-
+    checkAll(){
+      return this.$store.state.checkAll
+    },
     money() {
       return this.$store.state.money;
     },
@@ -506,8 +503,6 @@ export default {
       // return this.getTb[0].num
     },
     countMoney() {
-      let parseI = 0;
-      let parseF = 0;
       let price = 0;
       if (this.getTb.length) {
         for (let i = 0; i < this.getTb.length; i++) {
@@ -525,12 +520,20 @@ export default {
       }
       return price;
     },
-   check1(){
-     return this.$store.state.check1
-   },
-    check2(){
-     return this.$store.state.check2
-   }
+    countNum(){
+      let num = 0;
+      for(let i = 0; i < this.getTb.length; i++){
+        if(this.getTb[i].checked){
+          num += this.getTb[i].num
+        }
+      }
+      for(let i = 0; i < this.getTm.length; i++){
+        if(this.getTm[i].checked){
+          num += this.getTm[i].num
+        }
+      }
+      return num
+    }
   },
 };
 

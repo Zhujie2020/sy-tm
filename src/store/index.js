@@ -8,9 +8,30 @@ export default new Vuex.Store({
     tm: [],
     tb: [],
     check1:false,
-    check2:false
+    check2:false,
+    checkAll:false
   },
   mutations: {
+    count(state){
+      let flag = true;
+      for(let i of state.tb){
+        if(!i.checked){
+          flag = false;
+          break
+        }
+      }
+      for(let i of state.tm){
+        if(!i.checked){
+          flag = false;
+          break
+        }
+      }
+      if(flag){
+        state.checkAll=true
+      }else{
+        state.checkAll=false
+      }
+    },
     addItem(state, newVal) {
       let flag = true;
       for (let i = 0; i < state.tm.length; i++) {
@@ -152,9 +173,25 @@ export default new Vuex.Store({
    },
   //  全选
    selectAll(state){
+     state.checkAll = !state.checkAll;
      if(state.checkAll){
        state.check1= true;
-       state.check2 = true;
+       for(let i = 0; i < state.tb.length; i++){
+         state.tb[i].checked=true
+       }
+      for(let i = 0; i < state.tm.length; i++){
+        state.tm[i].checked=true
+      }
+      state.check2 = true;
+     }else{
+      state.check1= false;
+      for(let i = 0; i < state.tb.length; i++){
+        state.tb[i].checked = false
+      }
+     for(let i = 0; i < state.tm.length; i++){
+       state.tm[i].checked=false
+     }
+     state.check2 = false;
      }
    }
   }
