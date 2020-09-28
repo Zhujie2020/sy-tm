@@ -66,6 +66,12 @@ export default {
      this.isShow=!this.isShow
     }
   },
+  computed:{
+    login(){
+      return this.$store.state.login
+    }
+  }
+  
 };
 </script>
 

@@ -14,7 +14,7 @@
           <div class="all">追加</div>
           <div class="all">有图(9)</div>
         </div>
-        <div class="container-comment" v-for="(item,index) in list" :key = item>
+        <div class="container-comment" v-for="(item,index) in list" :key = item.id>
             <div class="time">
                 <div>{{item.name[index]}}</div>
                 <div>2020-09-30</div>
