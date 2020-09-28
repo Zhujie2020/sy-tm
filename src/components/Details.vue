@@ -176,7 +176,7 @@
         <div class="comment-top">
           <div class="shop-comment">
             <div class="comment-left">商品评价(1033)</div>
-            <div class="arrow-right comment-right">
+            <div class="arrow-right comment-right" @click="tohide">
               <div class="all">查看全部</div>
               <img src="../assets/右粉.png" alt />
             </div>
@@ -456,6 +456,11 @@ export default {
     },
     seeAll() {
       // this.seeComment = !this.seeComment;
+      this.$router.push({
+        path:"/co"
+      })
+    },
+    tohide(){
       this.$router.push({
         path:"/co"
       })
