@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="lazy">
-        <div v-for="item in list" :key="item" class="lazy-item">
+        <div v-for="item in list" :key="item.buy" class="lazy-item">
           <div class="recommend-item"><img :src="item.img" alt="" /></div>
           <div class="recommend-title">{{ item.info }}</div>
           <div class="recommend-price-box">

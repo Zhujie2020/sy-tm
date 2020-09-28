@@ -43,15 +43,21 @@ export default {
     return {
       password: "",
       name:"",
-      isShow:false
+      isShow:false,
     };
+  },
+  computed:{
+    loadShow(){
+      this.$store.state.loadShow
+    }
   },
   methods:{
     confirm(){
       if(this.name=="divdage"&&this.password=="666666"){
         this.$router.push({
-          path:"/nothing"
-        })
+          path:"/nothing",
+        }),
+         this.$store.state.loadShow = false
       }else{
         this.isShow =!this.isShow
       }
@@ -59,8 +65,7 @@ export default {
     confirmAgain(){
      this.isShow=!this.isShow
     }
-  }
-  
+  },
 };
 </script>
 

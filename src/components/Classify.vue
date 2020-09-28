@@ -6,7 +6,7 @@
     <div class="container">
       
       <div class="container-left">
-        <div v-for="(item,index) in list" :key="index">
+        <div v-for="(item,index) in list" :key=index>
           <p class="container-left-item" @click="changePage(index)" :class="index==num?'active':''">{{item}}</p>
         </div>
       </div>
