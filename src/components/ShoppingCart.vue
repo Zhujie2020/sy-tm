@@ -660,7 +660,6 @@ export default {
   width: 100%;
   background-color: #fff;
   z-index: 2;
-  transition-duration: 0.5s;
 }
 .picture {
   width: 80px;

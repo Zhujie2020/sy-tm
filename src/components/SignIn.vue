@@ -43,7 +43,7 @@ export default {
     return {
       password: "",
       name:"",
-      isShow:false
+      isShow:false,
     };
   },
   methods:{
@@ -52,12 +52,18 @@ export default {
         this.$router.push({
           path:"/nothing"
         })
+        this.login = !this.login 
       }else{
         this.isShow =!this.isShow
       }
     },
     confirmAgain(){
      this.isShow=!this.isShow
+    }
+  },
+  computed:{
+    login(){
+      return this.$store.state.login
     }
   }
   
