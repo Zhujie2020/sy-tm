@@ -2,6 +2,56 @@
   <div class="box">
     <div class="titleBox" :style="'height:'+titleBoxH+'%'">
       <div class="titleTopBox">
+        <div class="loadHidden" v-if="hiddenShow">
+              <div class="loadHidden-top">
+                 <p class="loadHidden-top-p">我的天猫</p>
+                  <span class="loadHidden-top-span" @click="closeHiddenShow">X</span>
+              </div>
+              <div class="loadHidden-bottom">
+                <div class="loadHidden-bottom-item">
+                  <div class="loadHidden-bottom-item-img">
+                    <img src="../assets/天猫-01.png" alt="">
+                  </div>
+                  <p>天猫客户端</p>
+                </div>
+               
+                <div class="loadHidden-bottom-item">
+                  <div class="loadHidden-bottom-item-img">
+                    <img src="//gw.alicdn.com/tfs/TB1y8P4qbGYBuNjy0FoXXciBFXa-60-72.png_110x10000.jpg_.webp" alt="">
+                  </div>
+                  <p>新人有礼</p>
+                </div>
+               
+                <div class="loadHidden-bottom-item" @click="goShoppingCart">
+                  <div class="loadHidden-bottom-item-img">
+                    <img src="../assets/购物车粉.png" alt="">
+                  </div>
+                  <p>购物车</p>
+                </div>
+               
+                <div class="loadHidden-bottom-item">
+                  <div class="loadHidden-bottom-item-img">
+                    <img src="../assets/收藏.png" alt="">
+                  </div>
+                  <p>收藏宝贝</p>
+                </div>
+               
+                <div class="loadHidden-bottom-item">
+                  <div class="loadHidden-bottom-item-img">
+                    <img src="../assets/店铺蓝.png" alt="">
+                  </div>
+                  <p>收藏店铺</p>
+                </div>
+               
+                <div class="loadHidden-bottom-item">
+                  <div class="loadHidden-bottom-item-img">
+                    <img src="../assets/首页订单.png" alt="">
+                  </div>
+                  <p>全部订单</p>
+                </div>
+               
+              </div>
+            </div>
         <div class="titleTop">
           <img src="../assets/home分类icon.png" class="icon" @click="goClassify" />
 
@@ -12,8 +62,10 @@
             v-show="showTitle" />
           </transition>
 
-
-          <span class="titleTop-login" @click="goSignin">登录</span>
+          <span class="titleTop-login" @click="goSignin" v-if="loadShow">登录</span>
+          <span class="titleTop-login" v-else @click="changeHiddenShow">
+            <img src="../assets/登录我.png" alt="" class="loadingMe">
+          </span>
         </div>
       </div>
   <transition name="searchMove">
@@ -304,9 +356,11 @@ export default {
       searchTop:40,
       searchScale:1,
       goTopShow:false,
-      titleBoxH:12
+      titleBoxH:12,
+      hiddenShow:false
     };
   },
+
   created() {
     let that = this;
     that.time();
@@ -321,6 +375,7 @@ export default {
       .catch(function (error) {
         console.log(error);
       });
+      // console.log(this.loadShow)
   },
   methods: {
 
@@ -339,8 +394,17 @@ export default {
         }
       })
     },
+    goShoppingCart(){
+      this.$router.push('/shoppingcart')
+    },
     goSignin(){
       this.$router.push("/signin")
+    },
+    changeHiddenShow(){
+      this.hiddenShow=true
+    },
+    closeHiddenShow(){
+      this.hiddenShow=false
     },
 
     scrollEvent(e){
@@ -397,6 +461,9 @@ export default {
     swiper() {
       return this.$refs.mySwiper.$swiper;
     },
+    loadShow(){
+      return this.$store.state.loadShow
+    }
   },
   mounted() {
     this.swiper.slideTo(3, 1000, false);
@@ -451,6 +518,7 @@ i {
   display: flex;
   justify-content: center;
   background-color: #ff0036;
+  position: relative;
 }
 
 .titleTop {
@@ -469,8 +537,8 @@ i {
   color: white;
   font-size: 14px;
   padding-right: 8px;
+  position: relative;
 }
-
 .titleBottomBox {
   position: absolute;
   width: 100%;
@@ -503,7 +571,78 @@ i {
   color: rgba(0, 0, 0, 0.3);
   margin-left: 10px;
 }
+.loadingMe{
+  width: 25px;
+}
+.loadHidden::after{
+  content: "";
+  width: 15px;
+  height:15px;
+  background: rgb(229,229,229);
+  position: absolute;
+  top: -7px;
+  right: 17px;
+  z-index: 3;
+  transform: rotate(45deg);
+}
+.loadHidden{
+  width:100%;
+  height:240px;
+  background: rgb(229,229,229);
+  position: absolute;
+  z-index: 5;
+  top: 40px;
+  right:0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+.loadHidden-top-p{
+  color: #000;
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+  padding-left: 10px;
+  line-height: 10px;
+}
+.loadHidden-top-span{
+  color: #000;
+  flex: 1;
+  text-align: end;
+  padding-right: 15px;
+  font-size: 20px;
+  line-height: 10px;
+  z-index: 6;
+}
+.loadHidden-top{
+width: 100%;
+display: flex;
+justify-content: space-between;
+}
 
+.loadHidden-bottom{
+width: 100%;
+height: 200px;
+display: flex;
+flex-wrap: wrap;
+}
+.loadHidden-bottom-item{
+  background: white;
+  width: 33.3%;
+  height: 50%;
+  border: 1px solid rgb(229,229,229);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.loadHidden-bottom-item-img img{
+  width: 30px;
+}
+.loadHidden-bottom-item p{
+  font-size: 12px;
+}
 /* 搜索框下面的icon分类 */
 
 .iconListBox {

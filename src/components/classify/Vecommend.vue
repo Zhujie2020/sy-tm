@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div v-for="item in list" :key="item" class="right">
+    <div v-for="item in list" :key=item.id class="right">
 
         <div class="rightContain">
             <p>{{item.title}}</p>
             <div class="rightContain-item">
-                <div v-for="item in item.contain" :key="item.id" class="rightContain-item-list">
+                <div v-for="item in item.contain" :key=item.id class="rightContain-item-list">
                     <img :src="item.pic" alt="">
                     <p>{{item.name}}</p>
                 </div>

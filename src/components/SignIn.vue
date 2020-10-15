@@ -46,13 +46,18 @@ export default {
       isShow:false,
     };
   },
+  computed:{
+    loadShow(){
+      this.$store.state.loadShow
+    }
+  },
   methods:{
     confirm(){
       if(this.name=="divdage"&&this.password=="666666"){
         this.$router.push({
-          path:"/nothing"
-        })
-        this.login = !this.login 
+          path:"/nothing",
+        }),
+         this.$store.state.loadShow = false
       }else{
         this.isShow =!this.isShow
       }

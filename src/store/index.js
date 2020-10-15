@@ -10,7 +10,7 @@ export default new Vuex.Store({
     check1:false,
     check2:false,
     checkAll:false,
-    login:true
+    loadShow:true
   },
   mutations: {
     count(state){
