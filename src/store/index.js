@@ -101,6 +101,7 @@ export default new Vuex.Store({
         }
       }
     },
+    // +号
     add(state, obj) {
       if (obj.a == "tb") {
         state.tb[obj.index].num++;
@@ -140,6 +141,7 @@ export default new Vuex.Store({
         }
       }
     },
+    // 删除按钮
     delItem(state, obj) {
       if (obj.a == 'tm') {
         state.tm.splice(obj.index, 1)
@@ -147,18 +149,19 @@ export default new Vuex.Store({
         state.tb.splice(obj.index, 1)
       }
     },
+    // 编辑
    changeCut(state,obj){
      if(obj.a=='tm'){
        if(obj.cut){
          for(let x of state.tm){
            x.x=0
          }
-
        }else{
         for(let x of state.tm){
           x.x=-68
         }
        }
+
      }else{
       if(obj.cut){
         for(let x of state.tb){
@@ -172,7 +175,7 @@ export default new Vuex.Store({
       }
      }
    },
-  //  全选
+  //  最下面的全选
    selectAll(state){
      state.checkAll = !state.checkAll;
      if(state.checkAll){

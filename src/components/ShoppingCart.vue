@@ -294,7 +294,6 @@ export default {
       cut1: true,
       cut2: true,
       check:false,
-
     };
   },
   created() {
@@ -352,6 +351,7 @@ export default {
         a: a,
       });
     },
+    //每件商品的单选
     changeBorder(index, a) {
       this.$store.commit("changeBorder", {
         index: index,
@@ -387,6 +387,15 @@ export default {
       }
        this.$store.commit("count")
     },
+    // 开始touch事件
+    start(index, a) {
+      if (a == "tm") {
+        this.$store.state.tm[index].begin = event.changedTouches[0].clientX;
+      } else {
+        this.$store.state.tb[index].begin = event.changedTouches[0].clientX;
+      }
+    },
+    // touch移动
     move(index, a) {
       if (a == "tm") {
         this.$store.state.tm[index].mid = event.changedTouches[0].clientX;
@@ -398,13 +407,7 @@ export default {
           this.getTb[index].mid - this.getTb[index].begin;
       }
     },
-    start(index, a) {
-      if (a == "tm") {
-        this.$store.state.tm[index].begin = event.changedTouches[0].clientX;
-      } else {
-        this.$store.state.tb[index].begin = event.changedTouches[0].clientX;
-      }
-    },
+    // 结束touch
     over(index, a) {
       if (a == "tm") {
         if (this.getTm[index].x <= -50) {
